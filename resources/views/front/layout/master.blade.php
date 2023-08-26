@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="assets/css/chosen.min.css" />
     <link rel="stylesheet" href="assets/css/ionicons.min.css" />
     <link rel="stylesheet" href="assets/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="assets/css/rating.css"/>
     <link
       rel="stylesheet"
       href="assets/css/material-design-iconic-font.min.css"

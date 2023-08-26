@@ -17,11 +17,15 @@ class Product extends Model
         return $this->belongsTo(Category::class,'cate_id','id');
     }
 
-    public function productComments() {
+    public function productImage() {
+        return $this->hasMany(productImage::class,'product_id','id');
+    }
+
+    public function productComment() {
         return $this->hasMany(ProductComment::class,'product_id','id');
     }
 
-    public function orderDetails() {
+    public function orderDetail() {
         return $this->hasMany(OrderDetail::class,'product_id','id');
     }
 }

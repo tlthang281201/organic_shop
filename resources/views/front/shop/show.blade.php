@@ -19,13 +19,13 @@
                 <div class="menu">
                   <nav>
                     <ul>
-                      <li class="active">
-                        <a href="index.html">
+                      <li>
+                        <a href="/">
                             Home
                         </a>
                       </li>
                       <li><a href="about.html">about us </a></li>
-                      <li><a href="shop.html">shop</a></li>
+                      <li class="active"><a href="shop.html">shop</a></li>
                       <li><a href="blog.html">Blog </a></li>
                       <li class="mega_parent">
                         <a href="#">Pages <i class="fa fa-angle-down"></i></a>
@@ -293,9 +293,9 @@
           <nav>
             <ul>
               <li>
-                <a href="index.html">Home ></a>
+                <a href="/">Sản phẩm ></a>
               </li>
-              <li>Product details</li>
+              <li>{{ $product->product_name }}</li>
             </ul>
           </nav>
         </div>
@@ -311,67 +311,35 @@
         <div class="col-lg-5 col-md-5 col-sm-12">
           <div class="product-flags">
             <div class="tab-content">
-              <div
-                class="tab-pane fade show active"
-                id="tabone"
-                role="tabpanel"
-              >
-                <div class="product_tab_img">
-                  <a href="#"
-                    ><img src="assets/img/cart/nav12.jpg" alt=""
-                  /></a>
+              @foreach($product->productImage as $index => $image)
+                <div
+                  class="tab-pane fade show {{$loop->first ? 'active' : ''}}"
+                  id="{{$index}}"
+                  role="tabpanel">
+                  <div class="product_tab_img">
+                    <a href="#"
+                      ><img src="front/img/{{$image->path}}" width="458px"
+                    /></a>
+                  </div>
                 </div>
-              </div>
-              <div class="tab-pane fade" id="tabtwo" role="tabpanel">
-                <div class="product_tab_img">
-                  <a href="#"
-                    ><img src="assets/img/cart/nav11.jpg" alt=""
-                  /></a>
-                </div>
-              </div>
-              <div class="tab-pane fade" id="tabthree" role="tabpanel">
-                <div class="product_tab_img">
-                  <a href="#"
-                    ><img src="assets/img/cart/nav13.jpg" alt=""
-                  /></a>
-                </div>
-              </div>
+              @endforeach
             </div>
             <div class="products_tab_button">
               <ul class="nav product_navactive" role="tablist">
+                @foreach($product->productImage as $index => $image)
                 <li class="product_button_one">
                   <a
-                    class="nav-link active"
+                    class="nav-link {{$loop->first ? 'active' : ''}}"
                     data-toggle="tab"
-                    href="#tabone"
+                    href="#{{$index}}"
                     role="tab"
                     aria-controls="imgeone"
                     aria-selected="false"
-                    ><img src="assets/img/cart/nav.jpg" alt=""
+                    ><img src="front/img/{{$image->path}}" width="100px"
                   /></a>
                 </li>
-                <li>
-                  <a
-                    class="nav-link"
-                    data-toggle="tab"
-                    href="#tabtwo"
-                    role="tab"
-                    aria-controls="imgetwo"
-                    aria-selected="false"
-                    ><img src="assets/img/cart/nav1.jpg" alt=""
-                  /></a>
-                </li>
-                <li>
-                  <a
-                    class="nav-link"
-                    data-toggle="tab"
-                    href="#tabthree"
-                    role="tab"
-                    aria-controls="imgethree"
-                    aria-selected="false"
-                    ><img src="assets/img/cart/nav2.jpg" alt=""
-                  /></a>
-                </li>
+                @endforeach
+
               </ul>
             </div>
           </div>
@@ -380,66 +348,37 @@
           <div class="product__details_content">
             <div class="demo_product">
               <h2>{{$product->product_name}}</h2>
-              {{$product}}
             </div>
             <div class="product_comments_block">
               <div class="comments_note clearfix">
-                <i class="fa fa-star" aria-hidden="true"></i>
-                <i class="fa fa-star" aria-hidden="true"></i>
-                <i class="fa fa-star" aria-hidden="true"></i>
-                <i class="fa fa-star" aria-hidden="true"></i>
-                <i class="fa fa-star" aria-hidden="true"></i>
+                @for($i = 1; $i <= 5; $i++)
+                  @if($i <= $product->avgRating)
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                  @else
+                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                  @endif
+                @endfor
+                <span>({{count($product->productComment)}})</span>
               </div>
               
             </div>
             <div class="current_price">
-              <span>$78.99</span>
+              @if($product->discount != null)
+                <span style="font-size: 35px">{{ number_format($product->price, 0) }}<small>đ</small></span>
+                <h6 style="text-decoration: line-through;color: darkgray">{{ number_format($product->discount, 0) }}<small>đ</small></h6>
+              @else
+                <span style="font-size: 35px">{{ number_format($product->price, 0) }}<small>đ</small></span>
+              @endif
             </div>
             <div class="product_information">
               <div id="product_description_short">
                 <p>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  Similique fuga eum minus necessitatibus commodi veniam in a
-                  quibusdam voluptatem! Nihil, iste non eius amet culpa!
+                  {!! $product->sdescription !!}
                 </p>
               </div>
               <div class="product_variants">
-                <div class="product_variant_list">
-                  <div class="product_variants_item variants_product">
-                    <span class="control_label">Size</span>
-                    <select name="group[1]" id="group_1">
-                      <option value="1">S</option>
-                      <option value="2" selected="selected">M</option>
-                      <option value="3">L</option>
-                    </select>
-                  </div>
-                  <div class="product_variants_item">
-                    <span class="control_label">Color</span>
-                    <ul>
-                      <li>
-                        <input
-                          id="balck"
-                          checked="checked"
-                          class="input_color"
-                          name="color1"
-                          type="radio"
-                        />
-                        <label for="balck" class="colo_btn"></label>
-                      </li>
-                      <li>
-                        <input
-                          id="red"
-                          class="input_color"
-                          name="color1"
-                          type="radio"
-                        />
-                        <label for="red" class="colo_btn"></label>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
                 <div class="quickview_plus_minus">
-                  <span class="control_label">Quantity</span>
+                  <span class="control_label">Số lượng</span>
                   <div class="quickview_plus_minus_inner">
                     <div class="cart-plus-minus">
                       <input
@@ -450,62 +389,31 @@
                       />
                     </div>
                     <div class="add_button">
-                      <button type="submit">Add to cart</button>
+                      <button type="submit">Thêm giỏ hàng</button>
                     </div>
                   </div>
                 </div>
                 <div class="product-availability">
                   <span id="availability">
                     <i class="zmdi zmdi-check"></i>
-                    In stock
+                    Còn hàng
                   </span>
                 </div>
                 <div class="social-sharing">
-                  <span>Share</span>
-                  <ul>
-                    <li>
-                      <a href="#"
-                        ><i class="fa fa-facebook" aria-hidden="true"></i
-                      ></a>
-                    </li>
-                    <li>
-                      <a href="#"
-                        ><i class="fa fa-twitter" aria-hidden="true"></i
-                      ></a>
-                    </li>
-                    <li>
-                      <a href="#"
-                        ><i class="fa fa-google-plus" aria-hidden="true"></i
-                      ></a>
-                    </li>
-                    <li>
-                      <a href="#"
-                        ><i class="fa fa-pinterest" aria-hidden="true"></i
-                      ></a>
-                    </li>
-                  </ul>
+
                 </div>
                 <div class="block-reassurance">
                   <ul>
                     <li>
                       <img src="assets/img/cart/cart1.png" alt="" />
                       <span
-                        >Security policy (edit with Customer reassurance
-                        module)</span
+                        >Đảm bảo thực phẩm sạch</span
                       >
                     </li>
                     <li>
                       <img src="assets/img/cart/cart2.png" alt="" />
                       <span
-                        >Delivery policy (edit with Customer reassurance
-                        module)</span
-                      >
-                    </li>
-                    <li>
-                      <img src="assets/img/cart/cart3.png" alt="" />
-                      <span
-                        >Return policy (edit with Customer reassurance
-                        module)</span
+                        >Giao hàng nhanh</span
                       >
                     </li>
                   </ul>
@@ -536,19 +444,7 @@
                   role="tab"
                   aria-controls="Description"
                   aria-selected="true"
-                  >Description</a
-                >
-              </li>
-              <li>
-                <a
-                  class="tav_past"
-                  id="profile-tab"
-                  data-toggle="tab"
-                  href="#details"
-                  role="tab"
-                  aria-controls="details"
-                  aria-selected="false"
-                  >Information</a
+                  >Mô tả sản phẩm</a
                 >
               </li>
               <li>
@@ -560,7 +456,7 @@
                   role="tab"
                   aria-controls="Reviews"
                   aria-selected="false"
-                  >Reviews</a
+                  >Bình luận</a
                 >
               </li>
             </ul>
@@ -573,75 +469,94 @@
             >
               <div class="product-description">
                 <p>
-                  Fashion has been creating well-designed collections since
-                  2010. The brand offers feminine designs delivering stylish
-                  separates and statement dresses which have since evolved
-                  into a full ready-to-wear collection in which every item is
-                  a vital part of a woman's wardrobe. The result? Cool, easy,
-                  chic looks with youthful elegance and unmistakable signature
-                  style. All the beautiful pieces are made in Italy and
-                  manufactured with the greatest attention. Now Fashion
-                  extends to a range of accessories including shoes, hats,
-                  belts and more!
+                  {{$product->description}}
                 </p>
               </div>
             </div>
-            <div class="tab-pane fade" id="details" role="tabpanel">
-              <div class="product-details">
-                <div class="product-manufacturer">
-                  <a href="#"><img src="assets/img/cart/11.jpg" alt="" /></a>
-                </div>
-                <div class="product-reference">
-                  <label class="label">Reference </label>
-                  <span>demo_10</span>
-                </div>
-                <div class="product-quantities">
-                  <label class="label">In stock</label>
-                  <span>321 Items</span>
-                </div>
-                <div class="product-out-of-stock">
-                  <section class="product-features">
-                    <h3>Data sheet</h3>
-                    <dl class="data-sheet">
-                      <dt class="name">Compositions</dt>
-                      <dd class="value">Viscose</dd>
-                      <dt class="name">Styles</dt>
-                      <dd class="value">Dressy</dd>
-                      <dt class="name">Properties</dt>
-                      <dd class="value">Short Dress</dd>
-                    </dl>
-                  </section>
-                </div>
-              </div>
-            </div>
+
             <div class="tab-pane fade" id="Reviews" role="tabpanel">
               <div class="product_comments_block_tab">
-                <div class="comment_clearfix">
-                  <div class="comment_author">
-                    <span>Grade </span>
-                    <div class="star_content clearfix">
-                      <ul>
-                        <li><i class="fa fa-star"></i></li>
-                        <li><i class="fa fa-star"></i></li>
-                        <li><i class="fa fa-star"></i></li>
-                        <li><i class="fa fa-star"></i></li>
-                        <li><i class="fa fa-star"></i></li>
-                      </ul>
+                @foreach($product->productComment as $productComment)
+                  <div class="comment_clearfix " style="display:flex;margin-bottom: 10px;">
+                      <div style="float: left;">
+                        <img src="front/img/avatar-default.jpg" width="100px"/>
+                      </div>
+                      <div style="float: right;">
+                        <div class="comment_author">
+                          <div class="star_content clearfix">
+                            <ul>
+                              @for($i = 1; $i <= 5; $i++)
+                                @if($i <= $productComment->rating)
+                                  <li><i class="fa fa-star"></i></li>
+                                @else
+                                  <li><i class="fa fa-star-o"></i></li>
+                                @endif
+                              @endfor
+                            </ul>
+                          </div>
+                        </div>
+                        <div class="comment_author_infos">
+                          <strong style="font-size: 15px;">{{$productComment->name}} </strong>
+                          <em style="margin-left: 10px">{{ date('d/m/Y', strtotime($productComment->create_date)) }}</em>
+                        </div>
+                        <div class="comment_details" >
+                          <p>{{$productComment->comment}}</p>
+                        </div>
+                      </div>
+                  </div>
+                @endforeach
+                {{-- <div class="review">
+                  <h4><strong>ĐÁNH GIÁ</strong></h4>
+                  <div class="container">
+                    <div class="row">
+
                     </div>
                   </div>
-                  <div class="comment_author_infos">
-                    <strong>posthemes </strong>
-                    <br />
-                    <em>05/08/2018</em>
+                </div> --}}
+                <h4 style="margin-bottom: 20px"><strong>BÌNH LUẬN</strong></h4>
+                <form action="" method="post">
+                  @csrf
+                  <input type="hidden" name="product_id" value="{{$product->id}}" />
+                  <input type="hidden" name="user_id" value="{{ Auth::user()->id ?? null }}" />
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <div class="personal-rating">
+                        <h6>Đánh giá</h6>
+                        <div class="rate">
+                            <input type="radio" id="star5" name="rating" value="5" />
+                            <label for="star5" title="text">5 stars</label>
+                            <input type="radio" id="star4" name="rating" value="4" />
+                            <label for="star4" title="text">4 stars</label>
+                            <input type="radio" id="star3" name="rating" value="3" />
+                            <label for="star3" title="text">3 stars</label>
+                            <input type="radio" id="star2" name="rating" value="2" />
+                            <label for="star2" title="text">2 stars</label>
+                            <input type="radio" id="star1" name="rating" value="1" />
+                            <label for="star1" title="text">1 star</label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="blog_leave_form mb-20">
+                        <input placeholder="Tên *" type="text" name="name">    
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="blog_leave_form mb-20">
+                        <input placeholder="Email *" type="Email" name="email">    
+                      </div>
+                       
+                    </div>
+                    <div class="col-12">
+                      <div class="label_textarea">
+                        <textarea placeholder="Nội dung*" name="comment"></textarea>    
+                      </div>  
+                      <div class="blog_leave_btn">
+                        <button type="submit">Đăng</button>
+                      </div>    
+                    </div>     
                   </div>
-                  <div class="comment_details">
-                    <h4>Demo</h4>
-                    <p>themes</p>
-                  </div>
-                  <div class="review">
-                    <p><a href="#">Write your review !</a></p>
-                  </div>
-                </div>
+                </form>
               </div>
             </div>
           </div>
@@ -657,32 +572,38 @@
       <div class="row">
         <div class="col-12">
           <div class="section_title text-left">
-            <h3>Related Product</h3>
+            <h3>Sản phẩm liên quan</h3>
           </div>
         </div>
       </div>
       <div class="row">
         <div class="related_product_active owl-carousel">
+          @foreach ($relatedProduct as $item)
           <div class="col-lg-2">
             <div class="single__product">
               <div class="single_product__inner">
                 <span class="new_badge">new</span>
                 <div class="product_img">
-                  <a href="#">
-                    <img src="assets/img/product/2.jpg" alt="" />
+                  <a href="shop/san-pham/{{$item->id}}">
+                    <img src="front/img/{{$item->productImage[0]->path}}" alt="" />
                   </a>
                 </div>
                 <div class="product__content text-center">
                   <div class="produc_desc_info">
                     <div class="product_title">
                       <h4>
-                        <a href="product-details.html"
-                          >Cheese Butter Burger</a
+                        <a href="shop/san-pham/{{ $item->id }}"
+                          >{{$item->product_name}}</a
                         >
                       </h4>
                     </div>
                     <div class="product_price">
-                      <p>$75.66</p>
+                      @if($item->discount != null)
+                        <p>{{number_format($item->price, 0)}}<small>đ</small></p>
+                        <h6 style="text-decoration: line-through;color: darkgray">{{number_format($item->discount, 0)}}<small>đ</small></h6>
+                      @else
+                        <p>{{ number_format($item->price, 0) }}<small>đ</small></p>
+                      @endif
                     </div>
                   </div>
                   <div class="product__hover">
@@ -690,7 +611,7 @@
                       <li>
                         <a href="#"><i class="ion-android-cart"></i></a>
                       </li>
-                      <li>
+                      {{-- <li>
                         <a
                           class="cart-fore"
                           href="#"
@@ -699,9 +620,9 @@
                           title="Quick View"
                           ><i class="ion-android-open"></i
                         ></a>
-                      </li>
+                      </li> --}}
                       <li>
-                        <a href="product-details.html"
+                        <a href="shop/san-pham/{{$item->id}}"
                           ><i class="ion-clipboard"></i
                         ></a>
                       </li>
@@ -711,386 +632,7 @@
               </div>
             </div>
           </div>
-          <div class="col-lg-2">
-            <div class="single__product">
-              <div class="single_product__inner">
-                <span class="new_badge">new</span>
-                <span class="discount_price">-5%</span>
-                <div class="product_img">
-                  <a href="#">
-                    <img src="assets/img/product/3.jpg" alt="" />
-                  </a>
-                </div>
-                <div class="product__content text-center">
-                  <div class="produc_desc_info">
-                    <div class="product_title">
-                      <h4>
-                        <a href="product-details.html">Sprite Yoga Straps1</a>
-                      </h4>
-                    </div>
-                    <div class="product_price">
-                      <p>$65.66</p>
-                    </div>
-                  </div>
-                  <div class="product__hover">
-                    <ul>
-                      <li>
-                        <a href="#"><i class="ion-android-cart"></i></a>
-                      </li>
-                      <li>
-                        <a
-                          class="cart-fore"
-                          href="#"
-                          data-toggle="modal"
-                          data-target="#my_modal"
-                          title="Quick View"
-                          ><i class="ion-android-open"></i
-                        ></a>
-                      </li>
-                      <li>
-                        <a href="product-details.html"
-                          ><i class="ion-clipboard"></i
-                        ></a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-2">
-            <div class="single__product">
-              <div class="single_product__inner">
-                <span class="new_badge">new</span>
-                <div class="product_img">
-                  <a href="#">
-                    <img src="assets/img/product/4.jpg" alt="" />
-                  </a>
-                </div>
-                <div class="product__content text-center">
-                  <div class="produc_desc_info">
-                    <div class="product_title">
-                      <h4>
-                        <a href="product-details.html"
-                          >Wayfarer Messenger Bag</a
-                        >
-                      </h4>
-                    </div>
-                    <div class="product_price">
-                      <p>$57.66</p>
-                    </div>
-                  </div>
-                  <div class="product__hover">
-                    <ul>
-                      <li>
-                        <a href="#"><i class="ion-android-cart"></i></a>
-                      </li>
-                      <li>
-                        <a
-                          class="cart-fore"
-                          href="#"
-                          data-toggle="modal"
-                          data-target="#my_modal"
-                          title="Quick View"
-                          ><i class="ion-android-open"></i
-                        ></a>
-                      </li>
-                      <li>
-                        <a href="product-details.html"
-                          ><i class="ion-clipboard"></i
-                        ></a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-2">
-            <div class="single__product">
-              <div class="single_product__inner">
-                <span class="new_badge">new</span>
-                <div class="product_img">
-                  <a href="#">
-                    <img src="assets/img/product/5.jpg" alt="" />
-                  </a>
-                </div>
-                <div class="product__content text-center">
-                  <div class="produc_desc_info">
-                    <div class="product_title">
-                      <h4>
-                        <a href="product-details.html">Impulse Duffle</a>
-                      </h4>
-                    </div>
-                    <div class="product_price">
-                      <p>$95.66</p>
-                    </div>
-                  </div>
-                  <div class="product__hover">
-                    <ul>
-                      <li>
-                        <a href="#"><i class="ion-android-cart"></i></a>
-                      </li>
-                      <li>
-                        <a
-                          class="cart-fore"
-                          href="#"
-                          data-toggle="modal"
-                          data-target="#my_modal"
-                          title="Quick View"
-                          ><i class="ion-android-open"></i
-                        ></a>
-                      </li>
-                      <li>
-                        <a href="product-details.html"
-                          ><i class="ion-clipboard"></i
-                        ></a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-2">
-            <div class="single__product">
-              <div class="single_product__inner">
-                <span class="new_badge">new</span>
-                <div class="product_img">
-                  <a href="#">
-                    <img src="assets/img/product/6.jpg" alt="" />
-                  </a>
-                </div>
-                <div class="product__content text-center">
-                  <div class="produc_desc_info">
-                    <div class="product_title">
-                      <h4>
-                        <a href="product-details.html">Fusce nec facilisi</a>
-                      </h4>
-                    </div>
-                    <div class="product_price">
-                      <p>$88.66</p>
-                    </div>
-                  </div>
-                  <div class="product__hover">
-                    <ul>
-                      <li>
-                        <a href="#"><i class="ion-android-cart"></i></a>
-                      </li>
-                      <li>
-                        <a
-                          class="cart-fore"
-                          href="#"
-                          data-toggle="modal"
-                          data-target="#my_modal"
-                          title="Quick View"
-                          ><i class="ion-android-open"></i
-                        ></a>
-                      </li>
-                      <li>
-                        <a href="product-details.html"
-                          ><i class="ion-clipboard"></i
-                        ></a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-2">
-            <div class="single__product">
-              <div class="single_product__inner">
-                <span class="new_badge">new</span>
-                <span class="discount_price">-5%</span>
-                <div class="product_img">
-                  <a href="#">
-                    <img src="assets/img/product/7.jpg" alt="" />
-                  </a>
-                </div>
-                <div class="product__content text-center">
-                  <div class="produc_desc_info">
-                    <div class="product_title">
-                      <h4>
-                        <a href="product-details.html"
-                          >Chaz Kangeroo Hoodie3</a
-                        >
-                      </h4>
-                    </div>
-                    <div class="product_price">
-                      <p>$99.66</p>
-                    </div>
-                  </div>
-                  <div class="product__hover">
-                    <ul>
-                      <li>
-                        <a href="#"><i class="ion-android-cart"></i></a>
-                      </li>
-                      <li>
-                        <a
-                          class="cart-fore"
-                          href="#"
-                          data-toggle="modal"
-                          data-target="#my_modal"
-                          title="Quick View"
-                          ><i class="ion-android-open"></i
-                        ></a>
-                      </li>
-                      <li>
-                        <a href="product-details.html"
-                          ><i class="ion-clipboard"></i
-                        ></a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-2">
-            <div class="single__product">
-              <div class="single_product__inner">
-                <span class="new_badge">new</span>
-                <div class="product_img">
-                  <a href="#">
-                    <img src="assets/img/product/8.jpg" alt="" />
-                  </a>
-                </div>
-                <div class="product__content text-center">
-                  <div class="produc_desc_info">
-                    <div class="product_title">
-                      <h4>
-                        <a href="product-details.html">Donec sem tellus</a>
-                      </h4>
-                    </div>
-                    <div class="product_price">
-                      <p>$80.66</p>
-                    </div>
-                  </div>
-                  <div class="product__hover">
-                    <ul>
-                      <li>
-                        <a href="#"><i class="ion-android-cart"></i></a>
-                      </li>
-                      <li>
-                        <a
-                          class="cart-fore"
-                          href="#"
-                          data-toggle="modal"
-                          data-target="#my_modal"
-                          title="Quick View"
-                          ><i class="ion-android-open"></i
-                        ></a>
-                      </li>
-                      <li>
-                        <a href="product-details.html"
-                          ><i class="ion-clipboard"></i
-                        ></a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-2">
-            <div class="single__product">
-              <div class="single_product__inner">
-                <span class="new_badge">new</span>
-                <div class="product_img">
-                  <a href="#">
-                    <img src="assets/img/product/9.jpg" alt="" />
-                  </a>
-                </div>
-                <div class="product__content text-center">
-                  <div class="produc_desc_info">
-                    <div class="product_title">
-                      <h4><a href="product-details.html">Healthy Melt</a></h4>
-                    </div>
-                    <div class="product_price">
-                      <p>$90.66</p>
-                    </div>
-                  </div>
-                  <div class="product__hover">
-                    <ul>
-                      <li>
-                        <a href="#"><i class="ion-android-cart"></i></a>
-                      </li>
-                      <li>
-                        <a
-                          class="cart-fore"
-                          href="#"
-                          data-toggle="modal"
-                          data-target="#my_modal"
-                          title="Quick View"
-                          ><i class="ion-android-open"></i
-                        ></a>
-                      </li>
-                      <li>
-                        <a href="product-details.html"
-                          ><i class="ion-clipboard"></i
-                        ></a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-2">
-            <div class="single__product">
-              <div class="single_product__inner">
-                <span class="new_badge">new</span>
-                <span class="discount_price">-5%</span>
-                <div class="product_img">
-                  <a href="#">
-                    <img src="assets/img/product/10.jpg" alt="" />
-                  </a>
-                </div>
-                <div class="product__content text-center">
-                  <div class="produc_desc_info">
-                    <div class="product_title">
-                      <h4>
-                        <a href="product-details.html">Mushroom Burger</a>
-                      </h4>
-                    </div>
-                    <div class="product_price">
-                      <p>$45.66</p>
-                    </div>
-                  </div>
-                  <div class="product__hover">
-                    <ul>
-                      <li>
-                        <a href="#"><i class="ion-android-cart"></i></a>
-                      </li>
-                      <li>
-                        <a
-                          class="cart-fore"
-                          href="#"
-                          data-toggle="modal"
-                          data-target="#my_modal"
-                          title="Quick View"
-                          ><i class="ion-android-open"></i
-                        ></a>
-                      </li>
-                      <li>
-                        <a href="product-details.html"
-                          ><i class="ion-clipboard"></i
-                        ></a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          @endforeach
         </div>
       </div>
     </div>
@@ -1098,68 +640,7 @@
   <!--Features product end-->
 
   <div class="organic_food_wrapper">
-    <!--Brand logo start-->
-    <div class="brand_logo">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-12">
-            <div class="brand_list_carousel owl-carousel">
-              <div class="single_brand_logo">
-                <a href="#">
-                  <img src="assets/img/brand/1.png" alt="brand logo" />
-                </a>
-              </div>
-              <div class="single_brand_logo">
-                <a href="#">
-                  <img src="assets/img/brand/2.png" alt="brand logo" />
-                </a>
-              </div>
-              <div class="single_brand_logo">
-                <a href="#">
-                  <img src="assets/img/brand/3.png" alt="brand logo" />
-                </a>
-              </div>
-              <div class="single_brand_logo">
-                <a href="#">
-                  <img src="assets/img/brand/4.png" alt="brand logo" />
-                </a>
-              </div>
-              <div class="single_brand_logo">
-                <a href="#">
-                  <img src="assets/img/brand/5.png" alt="brand logo" />
-                </a>
-              </div>
-              <div class="single_brand_logo">
-                <a href="#">
-                  <img src="assets/img/brand/1.png" alt="brand logo" />
-                </a>
-              </div>
-              <div class="single_brand_logo">
-                <a href="#">
-                  <img src="assets/img/brand/2.png" alt="brand logo" />
-                </a>
-              </div>
-              <div class="single_brand_logo">
-                <a href="#">
-                  <img src="assets/img/brand/3.png" alt="brand logo" />
-                </a>
-              </div>
-              <div class="single_brand_logo">
-                <a href="#">
-                  <img src="assets/img/brand/4.png" alt="brand logo" />
-                </a>
-              </div>
-              <div class="single_brand_logo">
-                <a href="#">
-                  <img src="assets/img/brand/5.png" alt="brand logo" />
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!--Brand logo end-->
+
 
     <!-- footer start -->
     <footer class="footer pt-90 my-account">

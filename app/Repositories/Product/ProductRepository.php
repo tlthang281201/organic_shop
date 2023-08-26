@@ -10,5 +10,15 @@ class ProductRepository extends BaseRepositories implements ProductRepositoryInt
     public function getModel() 
     {
         return Product::class;
-    }    
+    }
+    
+    public function getRelatedProducts($product,$limit = 4)
+    {
+        return $this->model->where('cate_id',$product->cate_id)->limit($limit)->get();
+    }
+
+    public function getFeaturedProducts()
+    {
+        return $this->model->where('featured',1)->limit(9)->get();
+    }
 }

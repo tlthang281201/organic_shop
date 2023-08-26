@@ -21,15 +21,8 @@
                   <nav>
                     <ul>
                       <li class="active">
-                        <a href="index.html"
-                          >Home <i class="fa fa-angle-down"></i
-                        ></a>
-                        <ul class="sub_menu">
-                          <li><a href="index.html">Home Version 1</a></li>
-                          <li><a href="index-2.html">Home Version 2</a></li>
-                          <li><a href="index-3.html">Home Version 3</a></li>
-                          <li><a href="index-4.html">Home Version 4</a></li>
-                        </ul>
+                        <a href="/"
+                          >Trang chủ</a>
                       </li>
                       <li><a href="about.html">about us </a></li>
                       <li><a href="shop.html">shop</a></li>
@@ -92,13 +85,7 @@
                   <nav>
                     <ul>
                       <li class="active">
-                        <a href="index.html">Home</a>
-                        <ul>
-                          <li><a href="index.html">Home Version 1</a></li>
-                          <li><a href="index-2.html">Home Version 2</a></li>
-                          <li><a href="index-3.html">Home Version 3</a></li>
-                          <li><a href="index-4.html">Home Version 4</a></li>
-                        </ul>
+                        <a href="/">Trang chủ</a>
                       </li>
                       <li><a href="about.html">about us </a></li>
                       <li><a href="shop.html">shop</a></li>
@@ -372,32 +359,41 @@
         <div class="row">
           <div class="col-12">
             <div class="section_title text-center">
-              <h3>Featured products</h3>
+              <h3>Sản phẩm nổi bật</h3>
             </div>
           </div>
         </div>
         <div class="row">
           <div class="features_product_active owl-carousel">
+            @foreach($featuredProducts as $product)
             <div class="col-lg-2">
               <div class="single__product">
                 <div class="single_product__inner">
-                  <span class="new_badge">new</span>
+                  {{-- <span class="new_badge">new</span> --}}
+                  @if($product->discount != null)
+                    <span class="discount_price">Giảm giá</span>
+                  @endif
                   <div class="product_img">
-                    <a href="#">
-                      <img src="assets/img/product/2.jpg" alt="" />
+                    <a href="shop/san-pham/{{ $product->id }}">
+                      <img src="front/img/{{ $product->productImage[0]->path }}" alt="" />
                     </a>
                   </div>
                   <div class="product__content text-center">
                     <div class="produc_desc_info">
                       <div class="product_title">
                         <h4>
-                          <a href="product-details.html"
-                            >Cheese Butter Burger</a
+                          <a href="shop/san-pham/{{ $product->id }}"
+                            >{{ $product->product_name }}</a
                           >
                         </h4>
                       </div>
                       <div class="product_price">
-                        <p>$75.66</p>
+                        @if($product->discount != null)
+                          <p>{{ number_format($product->price, 0) }}<small>đ</small></p>
+                          <h6 style="text-decoration: line-through;color: darkgray">{{ number_format($product->discount, 0) }}đ</h6>
+                        @else
+                          <p>{{ number_format($product->price, 0) }}<small>đ</small></p>
+                        @endif
                       </div>
                     </div>
                     <div class="product__hover">
@@ -406,17 +402,7 @@
                           <a href="#"><i class="ion-android-cart"></i></a>
                         </li>
                         <li>
-                          <a
-                            class="cart-fore"
-                            href="#"
-                            data-toggle="modal"
-                            data-target="#my_modal"
-                            title="Quick View"
-                            ><i class="ion-android-open"></i
-                          ></a>
-                        </li>
-                        <li>
-                          <a href="product-details.html"
+                          <a href="shop/san-pham/{{ $product->id }}"
                             ><i class="ion-clipboard"></i
                           ></a>
                         </li>
@@ -426,392 +412,7 @@
                 </div>
               </div>
             </div>
-            <div class="col-lg-2">
-              <div class="single__product">
-                <div class="single_product__inner">
-                  <span class="new_badge">new</span>
-                  <span class="discount_price">-5%</span>
-                  <div class="product_img">
-                    <a href="#">
-                      <img src="assets/img/product/3.jpg" alt="" />
-                    </a>
-                  </div>
-                  <div class="product__content text-center">
-                    <div class="produc_desc_info">
-                      <div class="product_title">
-                        <h4>
-                          <a href="product-details.html"
-                            >Sprite Yoga Straps1</a
-                          >
-                        </h4>
-                      </div>
-                      <div class="product_price">
-                        <p>$65.66</p>
-                      </div>
-                    </div>
-                    <div class="product__hover">
-                      <ul>
-                        <li>
-                          <a href="#"><i class="ion-android-cart"></i></a>
-                        </li>
-                        <li>
-                          <a
-                            class="cart-fore"
-                            href="#"
-                            data-toggle="modal"
-                            data-target="#my_modal"
-                            title="Quick View"
-                            ><i class="ion-android-open"></i
-                          ></a>
-                        </li>
-                        <li>
-                          <a href="product-details.html"
-                            ><i class="ion-clipboard"></i
-                          ></a>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-  
-            <div class="col-lg-2">
-              <div class="single__product">
-                <div class="single_product__inner">
-                  <span class="new_badge">new</span>
-                  <div class="product_img">
-                    <a href="#">
-                      <img src="assets/img/product/4.jpg" alt="" />
-                    </a>
-                  </div>
-                  <div class="product__content text-center">
-                    <div class="produc_desc_info">
-                      <div class="product_title">
-                        <h4>
-                          <a href="product-details.html"
-                            >Wayfarer Messenger Bag</a
-                          >
-                        </h4>
-                      </div>
-                      <div class="product_price">
-                        <p>$57.66</p>
-                      </div>
-                    </div>
-                    <div class="product__hover">
-                      <ul>
-                        <li>
-                          <a href="#"><i class="ion-android-cart"></i></a>
-                        </li>
-                        <li>
-                          <a
-                            class="cart-fore"
-                            href="#"
-                            data-toggle="modal"
-                            data-target="#my_modal"
-                            title="Quick View"
-                            ><i class="ion-android-open"></i
-                          ></a>
-                        </li>
-                        <li>
-                          <a href="product-details.html"
-                            ><i class="ion-clipboard"></i
-                          ></a>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-  
-            <div class="col-lg-2">
-              <div class="single__product">
-                <div class="single_product__inner">
-                  <span class="new_badge">new</span>
-                  <div class="product_img">
-                    <a href="#">
-                      <img src="assets/img/product/5.jpg" alt="" />
-                    </a>
-                  </div>
-                  <div class="product__content text-center">
-                    <div class="produc_desc_info">
-                      <div class="product_title">
-                        <h4>
-                          <a href="product-details.html">Impulse Duffle</a>
-                        </h4>
-                      </div>
-                      <div class="product_price">
-                        <p>$95.66</p>
-                      </div>
-                    </div>
-                    <div class="product__hover">
-                      <ul>
-                        <li>
-                          <a href="#"><i class="ion-android-cart"></i></a>
-                        </li>
-                        <li>
-                          <a
-                            class="cart-fore"
-                            href="#"
-                            data-toggle="modal"
-                            data-target="#my_modal"
-                            title="Quick View"
-                            ><i class="ion-android-open"></i
-                          ></a>
-                        </li>
-                        <li>
-                          <a href="product-details.html"
-                            ><i class="ion-clipboard"></i
-                          ></a>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-  
-            <div class="col-lg-2">
-              <div class="single__product">
-                <div class="single_product__inner">
-                  <span class="new_badge">new</span>
-                  <div class="product_img">
-                    <a href="#">
-                      <img src="assets/img/product/6.jpg" alt="" />
-                    </a>
-                  </div>
-                  <div class="product__content text-center">
-                    <div class="produc_desc_info">
-                      <div class="product_title">
-                        <h4>
-                          <a href="product-details.html"
-                            >Fusce nec facilisi</a
-                          >
-                        </h4>
-                      </div>
-                      <div class="product_price">
-                        <p>$88.66</p>
-                      </div>
-                    </div>
-                    <div class="product__hover">
-                      <ul>
-                        <li>
-                          <a href="#"><i class="ion-android-cart"></i></a>
-                        </li>
-                        <li>
-                          <a
-                            class="cart-fore"
-                            href="#"
-                            data-toggle="modal"
-                            data-target="#my_modal"
-                            title="Quick View"
-                            ><i class="ion-android-open"></i
-                          ></a>
-                        </li>
-                        <li>
-                          <a href="product-details.html"
-                            ><i class="ion-clipboard"></i
-                          ></a>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-  
-            <div class="col-lg-2">
-              <div class="single__product">
-                <div class="single_product__inner">
-                  <span class="new_badge">new</span>
-                  <span class="discount_price">-5%</span>
-                  <div class="product_img">
-                    <a href="#">
-                      <img src="assets/img/product/7.jpg" alt="" />
-                    </a>
-                  </div>
-                  <div class="product__content text-center">
-                    <div class="produc_desc_info">
-                      <div class="product_title">
-                        <h4>
-                          <a href="product-details.html"
-                            >Chaz Kangeroo Hoodie3</a
-                          >
-                        </h4>
-                      </div>
-                      <div class="product_price">
-                        <p>$99.66</p>
-                      </div>
-                    </div>
-                    <div class="product__hover">
-                      <ul>
-                        <li>
-                          <a href="#"><i class="ion-android-cart"></i></a>
-                        </li>
-                        <li>
-                          <a
-                            class="cart-fore"
-                            href="#"
-                            data-toggle="modal"
-                            data-target="#my_modal"
-                            title="Quick View"
-                            ><i class="ion-android-open"></i
-                          ></a>
-                        </li>
-                        <li>
-                          <a href="product-details.html"
-                            ><i class="ion-clipboard"></i
-                          ></a>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-  
-            <div class="col-lg-2">
-              <div class="single__product">
-                <div class="single_product__inner">
-                  <span class="new_badge">new</span>
-                  <div class="product_img">
-                    <a href="#">
-                      <img src="assets/img/product/8.jpg" alt="" />
-                    </a>
-                  </div>
-                  <div class="product__content text-center">
-                    <div class="produc_desc_info">
-                      <div class="product_title">
-                        <h4>
-                          <a href="product-details.html">Donec sem tellus</a>
-                        </h4>
-                      </div>
-                      <div class="product_price">
-                        <p>$80.66</p>
-                      </div>
-                    </div>
-                    <div class="product__hover">
-                      <ul>
-                        <li>
-                          <a href="#"><i class="ion-android-cart"></i></a>
-                        </li>
-                        <li>
-                          <a
-                            class="cart-fore"
-                            href="#"
-                            data-toggle="modal"
-                            data-target="#my_modal"
-                            title="Quick View"
-                            ><i class="ion-android-open"></i
-                          ></a>
-                        </li>
-                        <li>
-                          <a href="product-details.html"
-                            ><i class="ion-clipboard"></i
-                          ></a>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-  
-            <div class="col-lg-2">
-              <div class="single__product">
-                <div class="single_product__inner">
-                  <span class="new_badge">new</span>
-                  <div class="product_img">
-                    <a href="#">
-                      <img src="assets/img/product/9.jpg" alt="" />
-                    </a>
-                  </div>
-                  <div class="product__content text-center">
-                    <div class="produc_desc_info">
-                      <div class="product_title">
-                        <h4>
-                          <a href="product-details.html">Healthy Melt</a>
-                        </h4>
-                      </div>
-                      <div class="product_price">
-                        <p>$90.66</p>
-                      </div>
-                    </div>
-                    <div class="product__hover">
-                      <ul>
-                        <li>
-                          <a href="#"><i class="ion-android-cart"></i></a>
-                        </li>
-                        <li>
-                          <a
-                            class="cart-fore"
-                            href="#"
-                            data-toggle="modal"
-                            data-target="#my_modal"
-                            title="Quick View"
-                            ><i class="ion-android-open"></i
-                          ></a>
-                        </li>
-                        <li>
-                          <a href="product-details.html"
-                            ><i class="ion-clipboard"></i
-                          ></a>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-  
-            <div class="col-lg-2">
-              <div class="single__product">
-                <div class="single_product__inner">
-                  <span class="new_badge">new</span>
-                  <span class="discount_price">-5%</span>
-                  <div class="product_img">
-                    <a href="#">
-                      <img src="assets/img/product/10.jpg" alt="" />
-                    </a>
-                  </div>
-                  <div class="product__content text-center">
-                    <div class="produc_desc_info">
-                      <div class="product_title">
-                        <h4>
-                          <a href="product-details.html">Mushroom Burger</a>
-                        </h4>
-                      </div>
-                      <div class="product_price">
-                        <p>$45.66</p>
-                      </div>
-                    </div>
-                    <div class="product__hover">
-                      <ul>
-                        <li>
-                          <a href="#"><i class="ion-android-cart"></i></a>
-                        </li>
-                        <li>
-                          <a
-                            class="cart-fore"
-                            href="#"
-                            data-toggle="modal"
-                            data-target="#my_modal"
-                            title="Quick View"
-                            ><i class="ion-android-open"></i
-                          ></a>
-                        </li>
-                        <li>
-                          <a href="product-details.html"
-                            ><i class="ion-clipboard"></i
-                          ></a>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            @endforeach
           </div>
         </div>
       </div>
@@ -5684,68 +5285,6 @@
       </div>
     </div>
     <!--Best seller product  end-->
-  
-    <!--Brand logo start-->
-    <div class="brand_logo">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-12">
-            <div class="brand_list_carousel owl-carousel">
-              <div class="single_brand_logo">
-                <a href="#">
-                  <img src="assets/img/brand/1.png" alt="brand logo" />
-                </a>
-              </div>
-              <div class="single_brand_logo">
-                <a href="#">
-                  <img src="assets/img/brand/2.png" alt="brand logo" />
-                </a>
-              </div>
-              <div class="single_brand_logo">
-                <a href="#">
-                  <img src="assets/img/brand/3.png" alt="brand logo" />
-                </a>
-              </div>
-              <div class="single_brand_logo">
-                <a href="#">
-                  <img src="assets/img/brand/4.png" alt="brand logo" />
-                </a>
-              </div>
-              <div class="single_brand_logo">
-                <a href="#">
-                  <img src="assets/img/brand/5.png" alt="brand logo" />
-                </a>
-              </div>
-              <div class="single_brand_logo">
-                <a href="#">
-                  <img src="assets/img/brand/1.png" alt="brand logo" />
-                </a>
-              </div>
-              <div class="single_brand_logo">
-                <a href="#">
-                  <img src="assets/img/brand/2.png" alt="brand logo" />
-                </a>
-              </div>
-              <div class="single_brand_logo">
-                <a href="#">
-                  <img src="assets/img/brand/3.png" alt="brand logo" />
-                </a>
-              </div>
-              <div class="single_brand_logo">
-                <a href="#">
-                  <img src="assets/img/brand/4.png" alt="brand logo" />
-                </a>
-              </div>
-              <div class="single_brand_logo">
-                <a href="#">
-                  <img src="assets/img/brand/5.png" alt="brand logo" />
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
 
     <!-- footer start -->
     <footer class="footer pt-90">
