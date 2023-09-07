@@ -7,12 +7,6 @@
     <title>@yield('title') | Organicfood</title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <!-- Favicon -->
-    <link
-      rel="shortcut icon"
-      type="image/x-icon"
-      href="assets/img/favicon.png"
-    />
 
     <!-- all css here -->
     <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
@@ -21,11 +15,12 @@
     <link rel="stylesheet" href="assets/css/chosen.min.css" />
     <link rel="stylesheet" href="assets/css/ionicons.min.css" />
     <link rel="stylesheet" href="assets/css/font-awesome.min.css" />
-    <link rel="stylesheet" href="assets/css/rating.css"/>
     <link
       rel="stylesheet"
       href="assets/css/material-design-iconic-font.min.css"
     />
+    @yield('style')
+    <link rel="stylesheet" href="assets/css/jquery-ui.css"> 
     <link rel="stylesheet" href="assets/css/meanmenu.min.css" />
     <link rel="stylesheet" href="assets/css/bundle.css" />
     <link rel="stylesheet" href="assets/css/style.css" />
@@ -34,13 +29,18 @@
   </head>
   <body>
     <!-- Add your site or application content here -->
-
+    <div class="alert alert-success message" style="display: none">
+      <span>Thêm sản phẩm vào giỏ hàng thành công</span>
+    </div>
+    <div class="alert alert-danger outofstock" style="display: none">
+      <span>Sản phẩm này đã hết hàng</span>
+    </div>
     @yield('body')
 
     <!-- all js here -->
-    <script src="assets/js/vendor/jquery-1.12.0.min.js"></script>
     <script src="assets/js/popper.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/jquery-ui.js"></script>
     <script src="assets/js/jquery.meanmenu.min.js"></script>
     <script src="assets/js/isotope.pkgd.min.js"></script>
     <script src="assets/js/imagesloaded.pkgd.min.js"></script>

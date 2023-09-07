@@ -9,8 +9,10 @@ class BlogComment extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
     protected $table = 'blog_comment';
     protected $primaryKey = 'id';
+    protected $fillable = ['blog_id', 'name', 'comment'];
     protected $guarded = []; 
 
     public function blog() {

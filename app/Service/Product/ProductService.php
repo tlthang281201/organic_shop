@@ -17,14 +17,6 @@ class ProductService extends BaseService implements ProductServiceInterface
     public function find(int $id)
    {
         $product = $this->repository->find($id);
-
-        $avgRating = 0;
-        $sumRating = array_sum(array_column($product->productComment->toArray(),'rating'));
-        $countRating = count($product->productComment);
-        if($countRating != 0){
-            $avgRating = $sumRating/$countRating;
-        }
-        $product->avgRating = $avgRating;
         return $product;
    }
 
@@ -35,5 +27,15 @@ class ProductService extends BaseService implements ProductServiceInterface
    public function getFeaturedProducts()
    {
         return $this->repository->getFeaturedProducts();
+   }
+
+   public function getProductOnIndex($req)
+   {
+     return $this->repository->getProductOnIndex($req);
+   }
+
+   public function getProductByCategory($alias, $req)
+   {
+     return $this->repository->getProductByCategory($alias, $req);
    }
 }

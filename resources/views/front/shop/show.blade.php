@@ -19,64 +19,15 @@
                 <div class="menu">
                   <nav>
                     <ul>
-                      <li>
-                        <a href="/">
-                            Home
-                        </a>
+                      <li >
+                        <a href="/"
+                          >Trang chủ</a>
                       </li>
-                      <li><a href="about.html">about us </a></li>
-                      <li class="active"><a href="shop.html">shop</a></li>
-                      <li><a href="blog.html">Blog </a></li>
-                      <li class="mega_parent">
-                        <a href="#">Pages <i class="fa fa-angle-down"></i></a>
-                        <ul class="mega_menu">
-                          <li class="mega_item">
-                            <a class="mega_title" href="#">Column 1</a>
-                            <ul>
-                              <li><a href="shop.html">Shop page</a></li>
-                              <li>
-                                <a href="shop-right-sidebar.html"
-                                  >Shop Right sidebar</a
-                                >
-                              </li>
-                              <li>
-                                <a href="shop.html">shop Left Sidebar</a>
-                              </li>
-                              <li>
-                                <a href="product-details.html"
-                                  >product Details</a
-                                >
-                              </li>
-                              <li>
-                                <a href="my-account.html">My account</a>
-                              </li>
-                            </ul>
-                          </li>
-                          <li class="mega_item">
-                            <a class="mega_title" href="#">Column 2</a>
-                            <ul>
-                              <li><a href="wishlist.html">Wishlist</a></li>
-                              <li><a href="cart.html">Cart</a></li>
-                              <li><a href="checkout.html">Checkout</a></li>
-                              <li><a href="login.html">login</a></li>
-                              <li><a href="register.html">Register</a></li>
-                            </ul>
-                          </li>
-                          <li class="mega_item">
-                            <a class="mega_title" href="#">Column 3</a>
-                            <ul>
-                              <li><a href="about.html">About us</a></li>
-                              <li><a href="contact.html">Contact Us</a></li>
-                              <li><a href="blog.html">blog Page</a></li>
-                              <li>
-                                <a href="blog-details.html">blog Details</a>
-                              </li>
-                              <li><a href="404.html">Error pages</a></li>
-                            </ul>
-                          </li>
-                        </ul>
-                      </li>
-                      <li><a href="#">vegetable</a></li>
+                      <li><a href="gioi-thieu">Giới thiệu </a></li>
+                      <li class="active"><a href="shop">Sản phẩm</a></li>
+                      <li><a href="blog">Blog </a></li>
+                      
+                      <li><a href="lien-he">Liên hệ</a></li>
                     </ul>
                   </nav>
                 </div>
@@ -84,68 +35,15 @@
                 <div class="mobile-menu d-lg-none">
                   <nav>
                     <ul>
-                      <li class="active">
-                        <a href="index.html">Home</a>
-                        <ul>
-                          <li><a href="index.html">Home Version 1</a></li>
-                          <li><a href="index-2.html">Home Version 2</a></li>
-                          <li><a href="index-3.html">Home Version 3</a></li>
-                          <li><a href="index-4.html">Home Version 4</a></li>
-                        </ul>
+                      <li >
+                        <a href="/"
+                          >Trang chủ</a>
                       </li>
-                      <li><a href="about.html">about us </a></li>
-                      <li><a href="shop.html">shop</a></li>
-                      <li><a href="blog.html">Blog </a></li>
-                      <li>
-                        <a href="#">Pages</a>
-                        <ul>
-                          <li>
-                            <a href="#">Column 1</a>
-                            <ul>
-                              <li><a href="shop.html">Shop page</a></li>
-                              <li>
-                                <a href="shop-right-sidebar.html"
-                                  >Shop Right sidebar</a
-                                >
-                              </li>
-                              <li>
-                                <a href="shop.html">shop Left Sidebar</a>
-                              </li>
-                              <li>
-                                <a href="product-details.html"
-                                  >product Details</a
-                                >
-                              </li>
-                              <li>
-                                <a href="my-account.html">My account</a>
-                              </li>
-                            </ul>
-                          </li>
-                          <li>
-                            <a href="#">Column 2</a>
-                            <ul>
-                              <li><a href="wishlist.html">Wishlist</a></li>
-                              <li><a href="cart.html">Cart</a></li>
-                              <li><a href="checkout.html">Checkout</a></li>
-                              <li><a href="login.html">login</a></li>
-                              <li><a href="register.html">Register</a></li>
-                            </ul>
-                          </li>
-                          <li>
-                            <a href="#">Column 3</a>
-                            <ul>
-                              <li><a href="about.html">About us</a></li>
-                              <li><a href="contact.html">Contact Us</a></li>
-                              <li><a href="blog.html">blog Page</a></li>
-                              <li>
-                                <a href="blog-details.html">blog Details</a>
-                              </li>
-                              <li><a href="404.html">Error pages</a></li>
-                            </ul>
-                          </li>
-                        </ul>
-                      </li>
-                      <li><a href="#">vegetable</a></li>
+                      <li><a href="gioi-thieu">Giới thiệu </a></li>
+                      <li class="active"><a href="shop">Sản phẩm</a></li>
+                      <li><a href="blog">Blog </a></li>
+                      
+                      <li><a href="lien-he">Liên hệ</a></li>
                     </ul>
                   </nav>
                 </div>
@@ -153,8 +51,8 @@
               <div class="header_right_info d-flex">
                 <div class="search_box">
                   <div class="search_inner">
-                    <form action="#">
-                      <input type="text" placeholder="Search our catalog" />
+                    <form action="shop">
+                      <input name="search" type="text" placeholder="Tìm kiếm" value="{{ request('search') }}" />
                       <button type="submit">
                         <i class="ion-ios-search"></i>
                       </button>
@@ -164,16 +62,15 @@
                 <div class="mini__cart">
                   <div class="mini_cart_inner">
                     <div class="cart_icon">
-                      <a href="#">
+                      <a href="gio-hang">
                         <span class="cart_icon_inner">
                           <i class="ion-android-cart"></i>
-                          <span class="cart_count">2</span>
+                          <span class="cart_count">{{ Session::get('cart') != null ? count(Session::get('cart')) : 0 }}</span>
                         </span>
-                        <span class="item_total">$65.00</span>
                       </a>
                     </div>
                     <!--Mini Cart Box-->
-                    <div class="mini_cart_box cart_box_one">
+                    {{-- <div class="mini_cart_box cart_box_one">
                       <div class="mini_cart_item">
                         <div class="mini_cart_img">
                           <a href="#">
@@ -230,49 +127,32 @@
                       <div class="min_cart_checkout">
                         <a href="checkout.html">Checkout</a>
                       </div>
-                    </div>
+                    </div> --}}
                     <!--Mini Cart Box End -->
                   </div>
                 </div>
                 <div class="header_account">
                   <div class="account_inner">
-                    <a href="#"><i class="ion-gear-b"></i></a>
+                    <a style="cursor: pointer"><i class="ion-person"></i></a>
                   </div>
                   <div class="content-setting-dropdown">
                     <div class="language-selector-wrapper">
-                      <div class="language-selector">
-                        <ul>
-                          <li>
-                            <a href="#"
-                              ><img
-                                src="assets/img/1.jpg"
-                                alt="English"
-                              /><span class="expand-more">English</span></a
-                            >
-                          </li>
-
-                          <li>
-                            <a href="#"
-                              ><img
-                                src="assets/img/banner/frances2.jpg"
-                                alt="Language"
-                              /><span class="expand-more">Français</span>
-                            </a>
-                          </li>
-                        </ul>
-                      </div>
-                      <div class="currency-selector-wrapper">
-                        <ul>
-                          <li><a href="#">EUR $</a></li>
-                          <li><a href="#">USD $</a></li>
-                        </ul>
-                      </div>
                       <div class="user_info_top">
+                        @if(Auth::check())
                         <ul>
-                          <li><a href="my-account.html">my account</a></li>
-                          <li><a href="checkout.html">Checkout</a></li>
-                          <li><a href="login.html">Sign in</a></li>
+                          <li><a href="">{{ Auth::user()->name }}</a></li>
+                          <li><a href="log-out" onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();">Đăng xuất</a></li>
+                          <form id="logout-form" action="log-out" method="POST" class="d-none">
+                            @csrf
+                          </form>
                         </ul>
+                        @else
+                        <ul>
+                          <li><a href="dang-nhap">Đăng nhập</a></li>
+                          <li><a href="dang-ky">Đăng ký</a></li>
+                        </ul>
+                        @endif
                       </div>
                     </div>
                   </div>
@@ -293,7 +173,13 @@
           <nav>
             <ul>
               <li>
-                <a href="/">Sản phẩm ></a>
+                <a href="/">Trang chủ ></a>
+              </li>
+              <li>
+                <a href="shop">Sản phẩm ></a>
+              </li>
+              <li>
+                <a href="shop/danh-muc/{{ $product->productCategory->alias }}">{{ $product->productCategory->name }} ></a>
               </li>
               <li>{{ $product->product_name }}</li>
             </ul>
@@ -347,27 +233,14 @@
         <div class="col-lg-7 col-md-7 col-sm-12">
           <div class="product__details_content">
             <div class="demo_product">
-              <h2>{{$product->product_name}}</h2>
-            </div>
-            <div class="product_comments_block">
-              <div class="comments_note clearfix">
-                @for($i = 1; $i <= 5; $i++)
-                  @if($i <= $product->avgRating)
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                  @else
-                    <i class="fa fa-star-o" aria-hidden="true"></i>
-                  @endif
-                @endfor
-                <span>({{count($product->productComment)}})</span>
-              </div>
-              
+              <h1>{{$product->product_name}}</h1>
             </div>
             <div class="current_price">
               @if($product->discount != null)
-                <span style="font-size: 35px">{{ number_format($product->price, 0) }}<small>đ</small></span>
-                <h6 style="text-decoration: line-through;color: darkgray">{{ number_format($product->discount, 0) }}<small>đ</small></h6>
+                <span style="font-size: 23px">{{ number_format($product->discount, 0) }}<small>đ</small></span>
+                <h6 style="text-decoration: line-through;color: darkgray">{{ number_format($product->price, 0) }}<small>đ</small></h6>
               @else
-                <span style="font-size: 35px">{{ number_format($product->price, 0) }}<small>đ</small></span>
+                <span style="font-size: 23px">{{ number_format($product->price, 0) }}<small>đ</small></span>
               @endif
             </div>
             <div class="product_information">
@@ -377,27 +250,34 @@
                 </p>
               </div>
               <div class="product_variants">
+                @if($product->stocks > 0)
                 <div class="quickview_plus_minus">
                   <span class="control_label">Số lượng</span>
                   <div class="quickview_plus_minus_inner">
-                    <div class="cart-plus-minus">
+                    <div class="quantity-input">
                       <input
-                        type="text"
-                        value="02"
+                        type="number"
+                        value="1"
+                        min="1"
+                        id="qty"
                         name="qtybutton"
-                        class="cart-plus-minus-box"
                       />
                     </div>
                     <div class="add_button">
-                      <button type="submit">Thêm giỏ hàng</button>
+                      <button id="addCart">Thêm giỏ hàng</button>
                     </div>
                   </div>
                 </div>
+                @endif
                 <div class="product-availability">
+                  @if($product->stocks > 0)
                   <span id="availability">
                     <i class="zmdi zmdi-check"></i>
                     Còn hàng
                   </span>
+                  @else
+                  <span style="color: red;">Hết hàng</span>
+                  @endif
                 </div>
                 <div class="social-sharing">
 
@@ -469,42 +349,14 @@
             >
               <div class="product-description">
                 <p>
-                  {{$product->description}}
+                  {!! $product->description !!}
                 </p>
               </div>
             </div>
 
             <div class="tab-pane fade" id="Reviews" role="tabpanel">
               <div class="product_comments_block_tab">
-                @foreach($product->productComment as $productComment)
-                  <div class="comment_clearfix " style="display:flex;margin-bottom: 10px;">
-                      <div style="float: left;">
-                        <img src="front/img/avatar-default.jpg" width="100px"/>
-                      </div>
-                      <div style="float: right;">
-                        <div class="comment_author">
-                          <div class="star_content clearfix">
-                            <ul>
-                              @for($i = 1; $i <= 5; $i++)
-                                @if($i <= $productComment->rating)
-                                  <li><i class="fa fa-star"></i></li>
-                                @else
-                                  <li><i class="fa fa-star-o"></i></li>
-                                @endif
-                              @endfor
-                            </ul>
-                          </div>
-                        </div>
-                        <div class="comment_author_infos">
-                          <strong style="font-size: 15px;">{{$productComment->name}} </strong>
-                          <em style="margin-left: 10px">{{ date('d/m/Y', strtotime($productComment->create_date)) }}</em>
-                        </div>
-                        <div class="comment_details" >
-                          <p>{{$productComment->comment}}</p>
-                        </div>
-                      </div>
-                  </div>
-                @endforeach
+                
                 {{-- <div class="review">
                   <h4><strong>ĐÁNH GIÁ</strong></h4>
                   <div class="container">
@@ -513,50 +365,37 @@
                     </div>
                   </div>
                 </div> --}}
-                <h4 style="margin-bottom: 20px"><strong>BÌNH LUẬN</strong></h4>
+                <hr style="margin: 10px 0;">
                 <form action="" method="post">
                   @csrf
-                  <input type="hidden" name="product_id" value="{{$product->id}}" />
-                  <input type="hidden" name="user_id" value="{{ Auth::user()->id ?? null }}" />
+                  <input type="hidden" id="product_id" name="product_id" value="{{$product->id}}" />
+                  <input type="hidden" id="user_id" name="user_id" value="{{ Auth::user()->id ?? null }}" />
                   <div class="row">
-                    <div class="col-lg-12">
-                      <div class="personal-rating">
-                        <h6>Đánh giá</h6>
-                        <div class="rate">
-                            <input type="radio" id="star5" name="rating" value="5" />
-                            <label for="star5" title="text">5 stars</label>
-                            <input type="radio" id="star4" name="rating" value="4" />
-                            <label for="star4" title="text">4 stars</label>
-                            <input type="radio" id="star3" name="rating" value="3" />
-                            <label for="star3" title="text">3 stars</label>
-                            <input type="radio" id="star2" name="rating" value="2" />
-                            <label for="star2" title="text">2 stars</label>
-                            <input type="radio" id="star1" name="rating" value="1" />
-                            <label for="star1" title="text">1 star</label>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-lg-6">
+                    <div class="col-12">
                       <div class="blog_leave_form mb-20">
-                        <input placeholder="Tên *" type="text" name="name">    
+                        <input placeholder="Tên*" type="text" name="name" id="name"> 
+                        <div id="error" style="margin-top: 5px;">
+                          {{-- error --}}
+                      </div>     
                       </div>
-                    </div>
-                    <div class="col-lg-6">
-                      <div class="blog_leave_form mb-20">
-                        <input placeholder="Email *" type="Email" name="email">    
-                      </div>
-                       
                     </div>
                     <div class="col-12">
                       <div class="label_textarea">
-                        <textarea placeholder="Nội dung*" name="comment"></textarea>    
+                        <textarea placeholder="Nội dung*" name="comment" id="comment"></textarea>  
+                        <div id="error-comment" style="margin-top: 5px;margin-bottom: 5px;">
+                          {{-- error --}}
+                      </div>    
                       </div>  
                       <div class="blog_leave_btn">
-                        <button type="submit">Đăng</button>
+                        <button id="send-comment" type="submit">Đăng</button>
                       </div>    
                     </div>     
                   </div>
                 </form>
+                <hr style="margin: 20px 0;">
+                <div id="product-comment">
+                  {{-- comment --}}
+                </div>
               </div>
             </div>
           </div>
@@ -582,7 +421,9 @@
           <div class="col-lg-2">
             <div class="single__product">
               <div class="single_product__inner">
-                <span class="new_badge">new</span>
+                @if($item->discount != null)
+                  <span class="discount_price">Khuyến mãi</span>
+                @endif
                 <div class="product_img">
                   <a href="shop/san-pham/{{$item->id}}">
                     <img src="front/img/{{$item->productImage[0]->path}}" alt="" />
@@ -599,8 +440,8 @@
                     </div>
                     <div class="product_price">
                       @if($item->discount != null)
-                        <p>{{number_format($item->price, 0)}}<small>đ</small></p>
-                        <h6 style="text-decoration: line-through;color: darkgray">{{number_format($item->discount, 0)}}<small>đ</small></h6>
+                        <p>{{number_format($item->discount, 0)}}<small>đ</small></p>
+                        <h6 style="text-decoration: line-through;color: darkgray">{{number_format($item->price, 0)}}<small>đ</small></h6>
                       @else
                         <p>{{ number_format($item->price, 0) }}<small>đ</small></p>
                       @endif
@@ -609,7 +450,7 @@
                   <div class="product__hover">
                     <ul>
                       <li>
-                        <a href="#"><i class="ion-android-cart"></i></a>
+                        <a href="javascript:addCart({{ $item->id }},1)"><i class="ion-android-cart"></i></a>
                       </li>
                       {{-- <li>
                         <a
@@ -656,12 +497,12 @@
                   /></a>
                 </div>
                 <div class="footer_content">
-                  <p>Address: 123 Main Street, Anytown, CA 12345 - USA.</p>
-                  <p>Phone: +(000) 800 456 789</p>
-                  <p>Email: Contact@posthemes.com</p>
+                  <p>Địa chỉ: Đường Nam Kỳ Khởi Nghĩa, TP Đà Nẵng</p>
+                  <p>Điện thoại: 0123 456 789</p>
+                  <p>Email: thang281201@gmail.com</p>
                 </div>
                 <div class="footer_social">
-                  <h4>Get in Touch:</h4>
+                  <h4>Theo dõi ngay:</h4>
                   <div class="footer_social_icon">
                     <a href="#"><i class="fa fa-twitter"></i></a>
                     <a href="#"><i class="fa fa-google-plus"></i></a>
@@ -679,15 +520,15 @@
               <div class="single_footer widget">
                 <div class="single_footer_widget_inner">
                   <div class="footer_title">
-                    <h2>Products</h2>
+                    <h2>Sản phẩm</h2>
                   </div>
                   <div class="footer_menu">
                     <ul>
-                      <li><a href="#">Prices drop</a></li>
-                      <li><a href="#"> New products</a></li>
-                      <li><a href="#"> Best sales</a></li>
-                      <li><a href="#"> Contact us</a></li>
-                      <li><a href="#"> My account</a></li>
+                      <li><a href="#"> Rau củ quả</a></li>
+                      <li><a href="#"> Trái cây</a></li>
+                      <li><a href="#"> Hải sản</a></li>
+                      <li><a href="#"> Thịt gà</a></li>
+                      <li><a href="#"> Thịt bò</a></li>
                     </ul>
                   </div>
                 </div>
@@ -697,15 +538,15 @@
               <div class="single_footer widget">
                 <div class="single_footer_widget_inner">
                   <div class="footer_title">
-                    <h2>Login</h2>
+                    <h2>Chuyên mục</h2>
                   </div>
                   <div class="footer_menu">
                     <ul>
-                      <li><a href="#">Sitemap</a></li>
-                      <li><a href="#"> Stores</a></li>
-                      <li><a href="#"> Login</a></li>
-                      <li><a href="#"> Contact us</a></li>
-                      <li><a href="#"> My account</a></li>
+                      <li><a href="#"> Cẩm nang sức khoẻ</a></li>
+                      <li><a href="#"> An toàn thực phẩm</a></li>
+                      <li><a href="#"> Kiến thức</a></li>
+                      <li><a href="#"> Món ngon mỗi ngày</a></li>
+                      <li><a href="#"> Góc khuyến nông</a></li>
                     </ul>
                   </div>
                 </div>
@@ -715,15 +556,15 @@
               <div class="single_footer widget">
                 <div class="single_footer_widget_inner">
                   <div class="footer_title">
-                    <h2>Your account</h2>
+                    <h2>Chăm sóc khách hàng</h2>
                   </div>
                   <div class="footer_menu">
                     <ul>
-                      <li><a href="#">Personal info</a></li>
-                      <li><a href="#"> Orders</a></li>
-                      <li><a href="#"> Login</a></li>
-                      <li><a href="#"> Credit slips</a></li>
-                      <li><a href="#"> Addresses</a></li>
+                      <li><a href="#"> Chính sách đổi trả</a></li>
+                      <li><a href="#"> Chính sách giao hàng</a></li>
+                      <li><a href="#"> Chính sách thanh toán</a></li>
+                      <li><a href="#"> Điều khoản sử dụng</a></li>
+                      <li><a href="#"> Quy định đơn đặt hàng</a></li>
                     </ul>
                   </div>
                 </div>
@@ -733,12 +574,10 @@
           </div>
           <div class="col-lg-3 col-md-12 col-xs-12">
             <div class="footer_title">
-              <h2>Join Our Newsletter Now</h2>
+              <h2>Đăng kí nhận tin khuyến mãi</h2>
             </div>
             <div class="footer_news_letter">
-              <p>
-                Get E-mail updates about our latest shop and special offers.
-              </p>
+ 
               <div class="newsletter_form">
                 <form action="#">
                   <input
@@ -783,180 +622,96 @@
   <!--organicfood wrapper end-->
 
   <!-- modal area start -->
-  <div
-    class="modal fade"
-    id="my_modal"
-    tabindex="-1"
-    role="dialog"
-    aria-hidden="true"
-  >
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <button
-          type="button"
-          class="close"
-          data-dismiss="modal"
-          aria-label="Close"
-        >
-          <span aria-hidden="true">&times;</span>
-        </button>
-        <div class="modal-body shop">
-          <div class="container">
-            <div class="row">
-              <div class="col-lg-5 col-md-5 col-sm-12">
-                <div class="product-flags madal">
-                  <div class="tab-content" id="pills-tabContent">
-                    <div
-                      class="tab-pane fade show active"
-                      id="imgeone"
-                      role="tabpanel"
-                    >
-                      <div class="product_tab_img">
-                        <a href="#"
-                          ><img src="assets/img/cart/nav12.jpg" alt=""
-                        /></a>
-                      </div>
-                    </div>
-                    <div class="tab-pane fade" id="imgetwo" role="tabpanel">
-                      <div class="product_tab_img">
-                        <a href="#"
-                          ><img src="assets/img/cart/nav11.jpg" alt=""
-                        /></a>
-                      </div>
-                    </div>
-                    <div class="tab-pane fade" id="imgethree" role="tabpanel">
-                      <div class="product_tab_img">
-                        <a href="#"
-                          ><img src="assets/img/cart/nav13.jpg" alt=""
-                        /></a>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="products_tab_button modals">
-                    <ul class="nav product_navactive" role="tablist">
-                      <li>
-                        <a
-                          class="nav-link active"
-                          data-toggle="tab"
-                          href="#imgeone"
-                          role="tab"
-                          aria-controls="imgeone"
-                          aria-selected="false"
-                          ><img src="assets/img/cart/nav.jpg" alt=""
-                        /></a>
-                      </li>
-                      <li>
-                        <a
-                          class="nav-link"
-                          data-toggle="tab"
-                          href="#imgetwo"
-                          role="tab"
-                          aria-controls="imgetwo"
-                          aria-selected="false"
-                          ><img src="assets/img/cart/nav1.jpg" alt=""
-                        /></a>
-                      </li>
-                      <li>
-                        <a
-                          class="nav-link button_three"
-                          data-toggle="tab"
-                          href="#imgethree"
-                          role="tab"
-                          aria-controls="imgethree"
-                          aria-selected="false"
-                          ><img src="assets/img/cart/nav2.jpg" alt=""
-                        /></a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-7 col-md-7 col-sm-12">
-                <div class="modal_right">
-                  <div class="shop_reviews">
-                    <div class="demo_product">
-                      <h2>Sprite Yoga Straps1</h2>
-                    </div>
-                    <div class="current_price">
-                      <span class="regular">$64.99</span>
-                      <span class="regular_price">$78.99</span>
-                    </div>
-                    <div class="product_information product_modal">
-                      <div id="product_modal_content">
-                        <p>
-                          Short-sleeved blouse with feminine draped sleeve
-                          detail.
-                        </p>
-                      </div>
-                      <div class="product_variants">
-                        <div class="product_variants_item modal_item">
-                          <span class="control_label">Size</span>
-                          <select id="group_2">
-                            <option value="1">S</option>
-                            <option value="2" selected="selected">M</option>
-                            <option value="3">L</option>
-                          </select>
-                        </div>
+  <script src="assets/js/vendor/jquery-1.12.0.min.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function(){
+        loadComment();
+        function sendComment() {
+            $product_id = $('#product_id').val();
+            $name = $('#name').val();
+            $comment = $('#comment').val();
+            $user_id = $('#user_id').val();
+            $.ajax({
+                url: 'ajax/shop/post-comment', 
+                type: 'POST', 
+                headers: {
+                    'X-CSRF-TOKEN': $('input[name="_token"]').val()
+                },
+                data: {
+                    'product_id' : $product_id,
+                    'name' : $name,
+                    'comment': $comment,
+                    'user_id': $user_id
+                }, 
+                success: function () {
+                    loadComment();
+                    $('#name').val('');
+                    $('#comment').val('');
+                    setTimeout(function(){
+                      $("#send-comment").removeAttr("disabled");
+                    }, 15000);
+                }
+            });
+        }
 
-                        <div class="quickview_plus_minus">
-                          <span class="control_label">Quantity</span>
-                          <div class="quickview_plus_minus_inner">
-                            <div class="cart-plus-minus">
-                              <input
-                                type="text"
-                                value="02"
-                                name="qtybutton"
-                                class="cart-plus-minus-box"
-                              />
-                            </div>
-                            <div class="add_button add_modal">
-                              <button type="submit">Add to cart</button>
-                            </div>
-                          </div>
-                        </div>
+        $('#send-comment').click(function(e){
+            e.preventDefault();
+            $name = $('#name').val();
+            $comment = $('#comment').val();
+            if( $name.length < 3 || $name.length > 50) {
+                $('#error').html(`<span class="text-danger">Vui lòng điền tên lớn hơn 3 kí tự và nhỏ hơn 50 kí tự</span>`);
+                $('#name').addClass('invalid');
+            } else {
+                $('#error').html('');
+                $('#name').removeClass('invalid');
+            }  
+            if( $comment.length < 10 ){
+                $('#error-comment').html(`<span class="text-danger">Vui lòng điền nội dung lớn hơn 10 kí tự</span>`);
+                $('#comment').addClass('invalid');
+            } else {
+                $('#error-comment').html('');
+                $('#comment').removeClass('invalid');
+            }   
+            if( $comment.length >= 10 && ($name.length >= 3 && $name.length <= 50) ) {
+                $('#error').html('');
+                $('#error-comment').html('');
+                $('#name').removeClass('invalid');
+                $('#comment').removeClass('invalid');
+                $('#send-comment').attr('disabled',true);
+                sendComment();
+            }
+        });
+        function loadComment() {
+            $product_id = $('#product_id').val();
+            $('#product-comment').load("ajax/shop/load-comment/"+$product_id);
+        }
+        setInterval(function() {
+            loadComment();
+        },5000);
 
-                        <div class="cart_description">
-                          <p>
-                            Lorem ipsum dolor sit amet, consectetur
-                            adipisicing elit, sed do eiusmod tempor incididunt
-                            ut labore et dolore magna aliqua. Ut enim ad minim
-                            veniam,
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-12">
-                <div class="social-share">
-                  <h3>Share this product</h3>
-                  <ul>
-                    <li>
-                      <a href="#"><i class="fa fa-facebook"></i></a>
-                    </li>
-                    <li>
-                      <a href="#"><i class="fa fa-twitter"></i></a>
-                    </li>
-                    <li>
-                      <a href="#"><i class="fa fa-pinterest"></i></a>
-                    </li>
-                    <li>
-                      <a href="#"><i class="fa fa-google-plus"></i></a>
-                    </li>
-                    <li>
-                      <a href="#"><i class="fa fa-linkedin"></i></a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+        $('#addCart').click(function(){
+          $product_id = $('#product_id').val();
+          addToCart($product_id);
+        });
+        function addToCart(product_id) {
+            $qty = $('#qty').val();
+            $.ajax({
+                url: "gio-hang/add",
+                type: "GET",
+                data: {
+                    product_id: product_id,
+                    product_qty: $qty,
+                },
+                success: function (data) {
+                  $(".cart_count").html(data['cart_count']);
+                  $(".message").fadeIn().delay(1000).fadeOut();
+                },
+                error: function () {
+                    alert("Looix");
+                },
+            });
+        }
+    });
+  </script>
 @endsection
   <!-- modal area end -->

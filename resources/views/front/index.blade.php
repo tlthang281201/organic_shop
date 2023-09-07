@@ -24,59 +24,11 @@
                         <a href="/"
                           >Trang chủ</a>
                       </li>
-                      <li><a href="about.html">about us </a></li>
-                      <li><a href="shop.html">shop</a></li>
-                      <li><a href="blog.html">Blog </a></li>
-                      <li class="mega_parent">
-                        <a href="#">Pages <i class="fa fa-angle-down"></i></a>
-                        <ul class="mega_menu">
-                          <li class="mega_item">
-                            <a class="mega_title" href="#">Column 1</a>
-                            <ul>
-                              <li><a href="shop.html">Shop page</a></li>
-                              <li>
-                                <a href="shop-right-sidebar.html"
-                                  >Shop Right sidebar</a
-                                >
-                              </li>
-                              <li>
-                                <a href="shop.html">shop Left Sidebar</a>
-                              </li>
-                              <li>
-                                <a href="product-details.html"
-                                  >product Details</a
-                                >
-                              </li>
-                              <li>
-                                <a href="my-account.html">My account</a>
-                              </li>
-                            </ul>
-                          </li>
-                          <li class="mega_item">
-                            <a class="mega_title" href="#">Column 2</a>
-                            <ul>
-                              <li><a href="wishlist.html">Wishlist</a></li>
-                              <li><a href="cart.html">Cart</a></li>
-                              <li><a href="checkout.html">Checkout</a></li>
-                              <li><a href="login.html">login</a></li>
-                              <li><a href="register.html">Register</a></li>
-                            </ul>
-                          </li>
-                          <li class="mega_item">
-                            <a class="mega_title" href="#">Column 3</a>
-                            <ul>
-                              <li><a href="about.html">About us</a></li>
-                              <li><a href="contact.html">Contact Us</a></li>
-                              <li><a href="blog.html">blog Page</a></li>
-                              <li>
-                                <a href="blog-details.html">blog Details</a>
-                              </li>
-                              <li><a href="404.html">Error pages</a></li>
-                            </ul>
-                          </li>
-                        </ul>
-                      </li>
-                      <li><a href="#">vegetable</a></li>
+                      <li><a href="gioi-thieu">Giới thiệu </a></li>
+                      <li><a href="shop">Sản phẩm</a></li>
+                      <li><a href="blog">Blog </a></li>
+                      
+                      <li><a href="lien-he">Liên hệ</a></li>
                     </ul>
                   </nav>
                 </div>
@@ -87,59 +39,11 @@
                       <li class="active">
                         <a href="/">Trang chủ</a>
                       </li>
-                      <li><a href="about.html">about us </a></li>
-                      <li><a href="shop.html">shop</a></li>
-                      <li><a href="blog.html">Blog </a></li>
-                      <li>
-                        <a href="#">Pages</a>
-                        <ul>
-                          <li>
-                            <a href="#">Column 1</a>
-                            <ul>
-                              <li><a href="shop.html">Shop page</a></li>
-                              <li>
-                                <a href="shop-right-sidebar.html"
-                                  >Shop Right sidebar</a
-                                >
-                              </li>
-                              <li>
-                                <a href="shop.html">shop Left Sidebar</a>
-                              </li>
-                              <li>
-                                <a href="product-details.html"
-                                  >product Details</a
-                                >
-                              </li>
-                              <li>
-                                <a href="my-account.html">My account</a>
-                              </li>
-                            </ul>
-                          </li>
-                          <li>
-                            <a href="#">Column 2</a>
-                            <ul>
-                              <li><a href="wishlist.html">Wishlist</a></li>
-                              <li><a href="cart.html">Cart</a></li>
-                              <li><a href="checkout.html">Checkout</a></li>
-                              <li><a href="login.html">login</a></li>
-                              <li><a href="register.html">Register</a></li>
-                            </ul>
-                          </li>
-                          <li>
-                            <a href="#">Column 3</a>
-                            <ul>
-                              <li><a href="about.html">About us</a></li>
-                              <li><a href="contact.html">Contact Us</a></li>
-                              <li><a href="blog.html">blog Page</a></li>
-                              <li>
-                                <a href="blog-details.html">blog Details</a>
-                              </li>
-                              <li><a href="404.html">Error pages</a></li>
-                            </ul>
-                          </li>
-                        </ul>
-                      </li>
-                      <li><a href="#">vegetable</a></li>
+                      <li><a href="gioi-thieu">Giới thiệu </a></li>
+                      <li><a href="shop">Sản phẩm</a></li>
+                      <li><a href="blog">Blog </a></li>
+                      
+                      <li><a href="lien-he">Liên hệ</a></li>
                     </ul>
                   </nav>
                 </div>
@@ -147,8 +51,8 @@
               <div class="header_right_info d-flex">
                 <div class="search_box">
                   <div class="search_inner">
-                    <form action="#">
-                      <input type="text" placeholder="Search our catalog" />
+                    <form action="shop">
+                      <input name="search" type="text" placeholder="Tìm kiếm" value="{{ request('search') }}" />
                       <button type="submit">
                         <i class="ion-ios-search"></i>
                       </button>
@@ -158,119 +62,44 @@
                 <div class="mini__cart">
                   <div class="mini_cart_inner">
                     <div class="cart_icon">
-                      <a href="#">
+                      <a href="gio-hang">
                         <span class="cart_icon_inner">
                           <i class="ion-android-cart"></i>
-                          <span class="cart_count">2</span>
+                          <span class="cart_count">{{ Session::get('cart') != null ? count(Session::get('cart')) : 0 }}</span>
                         </span>
-                        <span class="item_total">$65.00</span>
                       </a>
                     </div>
-                    <!--Mini Cart Box-->
-                    <div class="mini_cart_box cart_box_one">
-                      <div class="mini_cart_item">
-                        <div class="mini_cart_img">
-                          <a href="#">
-                            <img src="assets/img/cart/1.jpg" alt="" />
-                            <span class="cart_count">1</span>
-                          </a>
-                        </div>
-                        <div class="cart_info">
-                          <h5>
-                            <a href="product-details.html">Mushroom Burger</a>
-                          </h5>
-                          <span class="cart_price">$75.99</span>
-                        </div>
-                        <div class="cart_remove">
-                          <a href="#"><i class="zmdi zmdi-delete"></i></a>
-                        </div>
-                      </div>
-                      <div class="mini_cart_item">
-                        <div class="mini_cart_img">
-                          <a href="#">
-                            <img src="assets/img/cart/2.jpg" alt="" />
-                            <span class="cart_count">1</span>
-                          </a>
-                        </div>
-                        <div class="cart_info">
-                          <h5><a href="#">Country Burger</a></h5>
-                          <span class="cart_price">$48.99</span>
-                        </div>
-                        <div class="cart_remove">
-                          <a href="#"><i class="zmdi zmdi-delete"></i></a>
-                        </div>
-                      </div>
 
-                      <div class="price_content">
-                        <div class="cart_subtotals">
-                          <div class="price_inline">
-                            <span class="label">Subtotal </span>
-                            <span class="value">$143.49 </span>
-                          </div>
-                          <div class="price_inline">
-                            <span class="label">Shipping </span>
-                            <span class="value">$7.00</span>
-                          </div>
-                          <div class="price_inline">
-                            <span class="label">Taxes </span>
-                            <span class="value">$0.00</span>
-                          </div>
-                        </div>
-                        <div class="cart-total-price">
-                          <span class="label">Total </span>
-                          <span class="value">$85.99</span>
-                        </div>
-                      </div>
-                      <div class="min_cart_checkout">
-                        <a href="checkout.html">Checkout</a>
-                      </div>
-                    </div>
-                    <!--Mini Cart Box End -->
                   </div>
                 </div>
+                
                 <div class="header_account">
                   <div class="account_inner">
-                    <a href="#"><i class="ion-gear-b"></i></a>
+                    <a style="cursor: pointer"><i class="ion-person"></i></a>
                   </div>
                   <div class="content-setting-dropdown">
                     <div class="language-selector-wrapper">
-                      <div class="language-selector">
-                        <ul>
-                          <li>
-                            <a href="#"
-                              ><img
-                                src="assets/img/1.jpg"
-                                alt="English"
-                              /><span class="expand-more">English</span></a
-                            >
-                          </li>
-
-                          <li>
-                            <a href="#"
-                              ><img
-                                src="assets/img/banner/frances2.jpg"
-                                alt="Language"
-                              /><span class="expand-more">Français</span>
-                            </a>
-                          </li>
-                        </ul>
-                      </div>
-                      <div class="currency-selector-wrapper">
-                        <ul>
-                          <li><a href="#">EUR $</a></li>
-                          <li><a href="#">USD $</a></li>
-                        </ul>
-                      </div>
                       <div class="user_info_top">
+                        @if(Auth::check())
                         <ul>
-                          <li><a href="my-account.html">my account</a></li>
-                          <li><a href="checkout.html">Checkout</a></li>
-                          <li><a href="login.html">Sign in</a></li>
+                          <li><a href="">{{ Auth::user()->name }}</a></li>
+                          <li><a href="log-out" onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();">Đăng xuất</a></li>
+                          <form id="logout-form" action="log-out" method="POST" class="d-none">
+                            @csrf
+                          </form>
                         </ul>
+                        @else
+                        <ul>
+                          <li><a href="dang-nhap">Đăng nhập</a></li>
+                          <li><a href="dang-ky">Đăng ký</a></li>
+                        </ul>
+                        @endif
                       </div>
                     </div>
                   </div>
                 </div>
+
               </div>
             </div>
           </div>
@@ -371,7 +200,7 @@
                 <div class="single_product__inner">
                   {{-- <span class="new_badge">new</span> --}}
                   @if($product->discount != null)
-                    <span class="discount_price">Giảm giá</span>
+                    <span class="discount_price">Khuyến mãi</span>
                   @endif
                   <div class="product_img">
                     <a href="shop/san-pham/{{ $product->id }}">
@@ -389,17 +218,16 @@
                       </div>
                       <div class="product_price">
                         @if($product->discount != null)
-                          <p>{{ number_format($product->price, 0) }}<small>đ</small></p>
-                          <h6 style="text-decoration: line-through;color: darkgray">{{ number_format($product->discount, 0) }}đ</h6>
+                        <p>{{ number_format($product->discount, 0) }}<small>đ</small><strike style="margin-left: 10px;font-size: 14px;color: darkgray;font-weight: 500">{{ number_format($product->price, 0) }}đ</strike></p>
                         @else
-                          <p>{{ number_format($product->price, 0) }}<small>đ</small></p>
+                        <p>{{ number_format($product->price, 0) }}<small>đ</small></p>
                         @endif
                       </div>
                     </div>
                     <div class="product__hover">
                       <ul>
                         <li>
-                          <a href="#"><i class="ion-android-cart"></i></a>
+                          <a href="javascript:addCart({{ $product->id }},1)"><i class="ion-android-cart"></i></a>
                         </li>
                         <li>
                           <a href="shop/san-pham/{{ $product->id }}"
@@ -432,8 +260,8 @@
                   <img src="assets/img/ship/1.png" alt="shipping icon" />
                 </div>
                 <div class="shipping_content">
-                  <h6>Free Shipping On Order Over $120</h6>
-                  <p>Free shipping on all order</p>
+                  <h6>Miễn phí giao hàng</h6>
+                  <p>Với đơn hàng từ 500k</p>
                 </div>
               </div>
               <div class="single_shipping_box one d-flex">
@@ -441,8 +269,8 @@
                   <img src="assets/img/ship/2.png" alt="shipping icon" />
                 </div>
                 <div class="shipping_content">
-                  <h6>Money Return</h6>
-                  <p>Back guarantee under 7 days</p>
+                  <h6>Hoàn tiền</h6>
+                  <p>Trong vòng 7 ngày</p>
                 </div>
               </div>
               <div class="single_shipping_box two d-flex">
@@ -450,8 +278,8 @@
                   <img src="assets/img/ship/3.png" alt="shipping icon" />
                 </div>
                 <div class="shipping_content">
-                  <h6>Member Discount</h6>
-                  <p>Support online 24 hours a day</p>
+                  <h6>Giảm giá</h6>
+                  <p>Cho các thành viên VIP</p>
                 </div>
               </div>
               <div class="single_shipping_box three d-flex">
@@ -459,8 +287,8 @@
                   <img src="assets/img/ship/4.png" alt="shipping icon" />
                 </div>
                 <div class="shipping_content">
-                  <h6>Online Support 24/7</h6>
-                  <p>Free shipping on all order</p>
+                  <h6>Hỗ Trợ 24/7</h6>
+                  <p>Hotline: 0926069058</p>
                 </div>
               </div>
             </div>
@@ -471,7 +299,7 @@
     <!--Shipping area end-->
   
     <!--shop product area start-->
-    <div class="shop_product">
+    {{-- <div class="shop_product">
       <div class="container-fluid">
         <div class="row">
           <div class="col-12">
@@ -2670,7 +2498,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> --}}
     <!--shop product area end-->
   
     <!--Banner area start-->
@@ -5300,12 +5128,12 @@
                   /></a>
                 </div>
                 <div class="footer_content">
-                  <p>Address: 123 Main Street, Anytown, CA 12345 - USA.</p>
-                  <p>Phone: +(000) 800 456 789</p>
-                  <p>Email: Contact@posthemes.com</p>
+                  <p>Địa chỉ: Đường Nam Kỳ Khởi Nghĩa, TP Đà Nẵng</p>
+                  <p>Điện thoại: 0123 456 789</p>
+                  <p>Email: thang281201@gmail.com</p>
                 </div>
                 <div class="footer_social">
-                  <h4>Get in Touch:</h4>
+                  <h4>Theo dõi ngay:</h4>
                   <div class="footer_social_icon">
                     <a href="#"><i class="fa fa-twitter"></i></a>
                     <a href="#"><i class="fa fa-google-plus"></i></a>
@@ -5323,15 +5151,15 @@
               <div class="single_footer widget">
                 <div class="single_footer_widget_inner">
                   <div class="footer_title">
-                    <h2>Products</h2>
+                    <h2>Sản phẩm</h2>
                   </div>
                   <div class="footer_menu">
                     <ul>
-                      <li><a href="#">Prices drop</a></li>
-                      <li><a href="#"> New products</a></li>
-                      <li><a href="#"> Best sales</a></li>
-                      <li><a href="#"> Contact us</a></li>
-                      <li><a href="#"> My account</a></li>
+                      <li><a href="#"> Rau củ quả</a></li>
+                      <li><a href="#"> Trái cây</a></li>
+                      <li><a href="#"> Hải sản</a></li>
+                      <li><a href="#"> Thịt gà</a></li>
+                      <li><a href="#"> Thịt bò</a></li>
                     </ul>
                   </div>
                 </div>
@@ -5341,15 +5169,15 @@
               <div class="single_footer widget">
                 <div class="single_footer_widget_inner">
                   <div class="footer_title">
-                    <h2>Login</h2>
+                    <h2>Chuyên mục</h2>
                   </div>
                   <div class="footer_menu">
                     <ul>
-                      <li><a href="#">Sitemap</a></li>
-                      <li><a href="#"> Stores</a></li>
-                      <li><a href="#"> Login</a></li>
-                      <li><a href="#"> Contact us</a></li>
-                      <li><a href="#"> My account</a></li>
+                      <li><a href="#"> Cẩm nang sức khoẻ</a></li>
+                      <li><a href="#"> An toàn thực phẩm</a></li>
+                      <li><a href="#"> Kiến thức</a></li>
+                      <li><a href="#"> Món ngon mỗi ngày</a></li>
+                      <li><a href="#"> Góc khuyến nông</a></li>
                     </ul>
                   </div>
                 </div>
@@ -5359,15 +5187,15 @@
               <div class="single_footer widget">
                 <div class="single_footer_widget_inner">
                   <div class="footer_title">
-                    <h2>Your account</h2>
+                    <h2>Chăm sóc khách hàng</h2>
                   </div>
                   <div class="footer_menu">
                     <ul>
-                      <li><a href="#">Personal info</a></li>
-                      <li><a href="#"> Orders</a></li>
-                      <li><a href="#"> Login</a></li>
-                      <li><a href="#"> Credit slips</a></li>
-                      <li><a href="#"> Addresses</a></li>
+                      <li><a href="#"> Chính sách đổi trả</a></li>
+                      <li><a href="#"> Chính sách giao hàng</a></li>
+                      <li><a href="#"> Chính sách thanh toán</a></li>
+                      <li><a href="#"> Điều khoản sử dụng</a></li>
+                      <li><a href="#"> Quy định đơn đặt hàng</a></li>
                     </ul>
                   </div>
                 </div>
@@ -5377,20 +5205,17 @@
           </div>
           <div class="col-lg-3 col-md-12 col-xs-12">
             <div class="footer_title">
-              <h2>Join Our Newsletter Now</h2>
+              <h2>Đăng kí nhận tin khuyến mãi</h2>
             </div>
             <div class="footer_news_letter">
-              <p>
-                Get E-mail updates about our latest shop and special offers.
-              </p>
               <div class="newsletter_form">
                 <form action="#">
                   <input
                     type="email"
                     required
-                    placeholder="Your Email Address"
+                    placeholder="Email Address"
                   />
-                  <input type="submit" value="Subscribe" />
+                  <input type="submit" value="Đăng kí" />
                 </form>
               </div>
             </div>
@@ -5602,4 +5427,5 @@
   </div>
 
   <!-- modal area end -->
+  <script src="assets/js/vendor/jquery-1.12.0.min.js"></script>
 @endsection
