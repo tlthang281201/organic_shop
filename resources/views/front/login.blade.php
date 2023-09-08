@@ -215,7 +215,7 @@
                                 </div>   
                             </div>
                             <div class="col-12">
-                                <div class="login_submit">
+                                <div class="login_submit mb-10" >
                                     <input class="inline" value="Đăng nhập" name="login" type="submit">
                                     <label class="inline" for="rememberme">
                                         <input id="rememberme" type="checkbox" name="remember">
@@ -225,6 +225,7 @@
                             </div>      
                         </div>
                     </form>    
+                    <span>Bạn chưa có tài khoản? <a href="dang-ky">Đăng ký</a></span>
                 </div>    
             </div>    
         </div>    

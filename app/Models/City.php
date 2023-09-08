@@ -5,15 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Blog extends Model
+class City extends Model
 {
     use HasFactory;
+
     public $timestamps = false;
-    protected $table = 'blogs';
+    protected $table = 'cities';
     protected $primaryKey = 'id';
-    protected $guarded = [];
-    
-    public function blogComments() {
-        return $this->hasMany(BlogComment::class,'blog_id','id');
+    protected $guarded = []; 
+
+    public function district() {
+        return $this->hasMany(District::class,'city_id','id');
     }
 }

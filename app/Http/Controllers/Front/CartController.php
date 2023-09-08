@@ -80,7 +80,9 @@ class CartController extends Controller
 
     public function destroyCart()
     {
-        Session::flush();
+        Session::forget('cart');
+        Session::forget('coupon');
+        Session::save();
         return redirect()->back();
     }
 
@@ -140,18 +142,26 @@ class CartController extends Controller
         {
             $total += $val['product_total'];
         }
+        if($coupon) {
+            if($total < $coupon['coupon_condition']){
+                Session::forget('coupon');
+                Session::save();
+                $coupon = null;
+            }
+        }
         return view('ajax.cart_total',compact('total','coupon'));
     }
 
     public function checkCoupon(Request $request)
     {
         $code = Coupon::where('code',$request->code)->first();
+        $total = $this->countTotal();
         $coupon = Session::get('coupon');
         $now = date('Y-m-d');
         if($code) {
             if($coupon) {
                 $response['notify'] = 'danger';
-                $response['message'] = "Chỉ sử dụng được một mã";
+                $response['message'] = "Chỉ sử dụng được một mã khuyến mãi";
                 return $response;
             }
             else {
@@ -160,24 +170,35 @@ class CartController extends Controller
                     $response['message'] = "Mã khuyến mãi đã hết hạn";
                     return $response;
                 } else {
-                    if($code->quantity = 0) {
+                    if($code->quantity <= 0) {
                         $response['notify'] = 'danger';
                         $response['message'] = "Mã khuyến mãi đã hết lượt sử dụng";
                         return $response;
                     } else {
-                        $newCoupon = array(
-                            'coupon_id' => $code->id,
-                            'coupon_name' => $code->name,
-                            'coupon_code' => $code->code,
-                            'coupon_type' => $code->type,
-                            'coupon_value' => $code->value
-                        );
-                        Session::put('coupon',$newCoupon);
-                        Session::save();
-
-                        $response['notify'] = 'success';
-                        $response['message'] = "Sử dụng mã khuyến mãi thành công";
-                        return $response;
+                        if($total >= $code->total_order) {
+                            $newCoupon = array(
+                                'coupon_id' => $code->id,
+                                'coupon_name' => $code->name,
+                                'coupon_code' => $code->code,
+                                'coupon_type' => $code->type,
+                                'coupon_value' => $code->value,
+                                'max_discount' => $code->max_discount,
+                                'coupon_expire' => $code->expire_date,
+                                'coupon_condition' => $code->total_order
+                            );
+                            Session::put('coupon',$newCoupon);
+                            Session::save();
+    
+                            $response['notify'] = 'success';
+                            $response['message'] = "Sử dụng mã khuyến mãi thành công";
+                            return $response;
+                        }
+                        else {
+                            $condition = number_format($code->total_order,0);
+                            $response['notify'] = 'danger';
+                            $response['message'] = "Mã khuyến mãi này chỉ được sử dụng với đơn hàng trên $condition đ";
+                            return $response;
+                        }
                     }
                 }
             }
@@ -186,5 +207,25 @@ class CartController extends Controller
             $response['message'] = "Mã khuyến mãi không tồn tại";
             return $response;
         }
+    }
+
+    public function loadCoupon()
+    {
+        $coupon = Session::get('coupon');
+        $total = $this->countTotal();
+        if($coupon) {
+            if($total < $coupon['coupon_condition']){
+                Session::forget('coupon');
+                Session::save();
+                $coupon = null;
+            }
+        }
+        return view('ajax.load_coupon_used',compact('coupon'));
+    }
+
+    public function removeCoupon()
+    {
+        Session::forget('coupon');
+        Session::save();
     }
 }

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Shipper extends Model
 {
     use HasFactory;
-
+    public $timestamps = false;
     protected $table = 'shippers';
     protected $primaryKey = 'id';
     protected $guarded = [];    

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class ProductImage extends Model
 {
     use HasFactory;
-
+    public $timestamps = false;
     protected $table = 'product_image';
     protected $primaryKey = 'id';
     protected $guarded = []; 

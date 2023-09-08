@@ -3450,7 +3450,7 @@ span.control_labels {
 
 .Checkout_page_section {
     border-bottom: 1px solid #ededed;
-    padding: 100px 0;
+    padding: 50px 0;
 }
 .customer-login h3 {
     color: #515151;
@@ -4439,4 +4439,19 @@ nav .pagination {
     border: 1px solid #dddddd;
     width: 75px;
     border-radius: 5px;
+}
+.card-coupon {
+    border: solid 1px #dc3545;
+    background-color: white;
+    width: 70%;
+    border-radius: 5px;
+    padding: 10px;
+    position: relative;
+}
+.remove-coupon {
+    position: absolute;
+    float: right;
+    right: 5px;
+    top: 2px;
+    cursor: pointer;
 }

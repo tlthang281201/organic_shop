@@ -1,0 +1,533 @@
+@extends('front.layout.master')
+@section('title','Thanh toán')
+@section('body')
+<div class="organic_food_wrapper blog_details">
+    <!--Header start-->
+     <header class="header sticky-header">
+         <div class="container-fluid">
+             <div class="row">
+                 <div class="col-12">
+                     <div class="header_wrapper_inner">
+                        
+                         <div class="logo col-xs-12">
+                             <a href="index.html">
+                                 <img src="assets/img/logo/logo.png" alt="">
+                             </a>
+                         </div>
+                         
+                         
+                         <div class="main_menu_inner">
+                           
+                             <div class="menu">
+                                 <nav>
+                                    <ul>
+                                        <li>
+                                            <a href="/">Trang chủ</a>
+                                        </li>
+                                        <li><a href="gioi-thieu">Giới thiệu </a></li>
+                                        <li ><a href="shop">Sản phẩm</a></li>
+                                        <li><a href="blog">Blog </a></li>
+                                        
+                                        <li><a href="lien-he">Liên hệ</a></li>
+                                      </ul>
+                                 </nav>
+                             </div>
+                             
+                             <div class="mobile-menu d-lg-none">
+                                 <nav>
+                                    <ul>
+                                        <li>
+                                            <a href="/">Trang chủ</a>
+                                        </li>
+                                        <li><a href="gioi-thieu">Giới thiệu </a></li>
+                                        <li ><a href="shop">Sản phẩm</a></li>
+                                        <li><a href="blog">Blog </a></li>
+                                        
+                                        <li><a href="lien-he">Liên hệ</a></li>
+                                      </ul>
+                                 </nav>
+                             </div>
+                         </div>
+                         <div class="header_right_info d-flex">
+                             <div class="search_box">
+                                 <div class="search_inner">
+                                     <form action="shop">
+                                         <input name="search" type="text" placeholder="Tìm kiếm">
+                                         <button type="submit"><i class="ion-ios-search"></i></button>
+                                     </form>
+                                 </div>
+                             </div>
+                             <div class="mini__cart">
+                                 <div class="mini_cart_inner">
+                                     <div class="cart_icon">
+                                        <a href="gio-hang">
+                                            <span class="cart_icon_inner">
+                                                <i class="ion-android-cart"></i>
+                                                <span class="cart_count">{{ Session::get('cart') != null ? count(Session::get('cart')) : 0 }}</span>
+                                            </span>
+                                        </a>
+                                     </div>
+
+                                 </div>
+                             </div>
+                             <div class="header_account">
+                                <div class="account_inner">
+                                  <a style="cursor: pointer"><i class="ion-person"></i></a>
+                                </div>
+                                <div class="content-setting-dropdown">
+                                  <div class="language-selector-wrapper">
+                                    <div class="user_info_top">
+                                      @if(Auth::check())
+                                      <ul>
+                                        <li><a href="">{{ Auth::user()->name }}</a></li>
+                                        <li><a href="log-out" onclick="event.preventDefault();
+                                          document.getElementById('logout-form').submit();">Đăng xuất</a></li>
+                                        <form id="logout-form" action="log-out" method="POST" class="d-none">
+                                          @csrf
+                                        </form>
+                                      </ul>
+                                      @else
+                                      <ul>
+                                        <li><a href="dang-nhap">Đăng nhập</a></li>
+                                        <li><a href="dang-ky">Đăng ký</a></li>
+                                      </ul>
+                                      @endif
+                                    </div>
+                                  </div>
+                                </div>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+         </div>
+     </header>
+     <!--Header end-->
+ </div>
+  <!--organicfood wrapper end-->
+  
+ <!--breadcrumb area start-->
+ <div class="breadcrumb_container ">
+     <div class="container-fluid">
+         <div class="row">
+             <div class="col-12">     
+                 <nav>
+             <ul>
+                 <li>
+                     <a href="">Trang chủ ></a>
+                 </li>
+                 <li>
+                    <a href="gio-hang">Giỏ hàng ></a>
+                </li>
+                 <li>Thanh toán</li>
+             </ul>
+         </nav>
+             </div>
+         </div> 
+     </div>        
+ </div>
+  <!--breadcrumb area end-->
+ <!--Checkout page section-->
+ <form action="check-out/add-order" method="POST" autocomplete="on">
+    @csrf
+    <div class="Checkout_page_section">
+        <div class="container">
+            <div class="checkout-form">
+                <div class="row">
+                    @if($carts)
+                    <div class="col-lg-6 col-md-6">
+                        
+                            <h3>Thông tin nhận hàng</h3>
+                            <div class="row">
+                                <div class="col-12 mb-30">
+                                    <label for="b_f_name">Họ tên <span>*</span></label>
+                                    <input required name="name" id="b_f_name" type="text" disabled value="{{ Auth::user()->name }}">    
+                                </div>
+                                <div class="col-12 mb-30">
+                                    <label for="city">Tỉnh / Thành phố <span>*</span></label>
+                                    <select required name="city" id="city" class="choose-city">
+                                        <option disabled>----Chọn tỉnh thành phố----</option>
+                                        @foreach($cities as $city)
+                                            <option value="{{ $city->id }}">{{ $city->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="col-lg-6 mb-30">
+                                    <label for="district">Quận / Huyện  <span>*</span></label>
+                                    <select required name="district" id="district" class="choose-district">
+                                        <option disabled>----Chọn quận huyện----</option>
+                                        {{-- district --}}
+                                    </select>
+                                </div> 
+                                <div class="col-lg-6 mb-30">
+                                    <label for="ward">Phường / Xã<span>*</span></label>
+                                    <select required name="ward" id="ward" class="choose-ward">
+                                        <option disabled>----Chọn phường xã----</option>
+                                    </select> 
+                                </div>
+                                <div class="col-12 mb-30">
+                                    <label>Địa chỉ cụ thể<span>*</span></label>
+                                    <input required name="address" id="address" type="text">     
+                                </div>
+                                <div class="col-lg-6 mb-30">
+                                    <label for="b_email">Địa chỉ email<span>*</span></label>
+                                    <input name="email" id="b_email" type="text" disabled value="{{ Auth::user()->email }}">    
+                                </div> 
+                                <div class="col-lg-6 mb-30">
+                                    <label>Số điện thoại<span>*</span></label>
+                                    <input name="phone" type="text" disabled value="{{ Auth::user()->phone }}">    
+                                </div> 
+                                {{-- <div class="col-12 mb-30">
+                                    <input id="b_c_account" type="checkbox" data-target="createp_account" />
+                                    <label class="righ_0" for="b_c_account" data-toggle="collapse" data-target="#collapseOne" aria-controls="collapseOne">Create an account?</label>
+                                    
+                                    <div id="collapseOne" class="collapse" data-parent="#accordion">
+                                        <div class="card-body1">
+                                            <p>Create an account by entering the information below. If you are a returning customer please login at the top of the page.</p>
+                                            <label for="b_a_password">Account password   <span>*</span></label>
+                                            <input id="b_a_password" type="text">  
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 mb-30">
+                                    <input id="b__m__0account" type="checkbox" data-target="createp_account" />
+                                    <label class="righ_1" for="b__m__0account" data-toggle="collapse" data-target="#collapsetwo" aria-controls="collapseOne">Ship to a different address?</label>
+                                    
+                                    <div id="collapsetwo" class="collapse" data-parent="#accordion">
+                                        <div class="row">
+                                            <div class="col-12 mb-30">
+                                                <label for="b_country">Country <span class="required">*</span></label>
+                                                <select id="b_country">
+                                                    <option value="1">Select a country</option>    
+                                                    <option value="2">bangladesh</option>    
+                                                    <option value="3">Algeria</option>    
+                                                    <option value="4">Afghanistan</option>    
+                                                    <option value="5">Ghana</option>    
+                                                    <option value="6">Albania</option>    
+                                                    <option value="7">Bahrain</option>    
+                                                    <option value="8">Colombia</option>    
+                                                    <option value="9">Dominican Republic</option>    
+                                                </select>    
+                                            </div>
+                                            <div class="col-lg-6 mb-30">
+                                                <label for="n_f_name">First Name <span>*</span></label>
+                                                <input id="n_f_name" type="text">    
+                                            </div>
+                                            <div class="col-lg-6 mb-30">
+                                                <label for="b__name">Last Name  <span>*</span></label>
+                                                <input id="b__name" type="text"> 
+                                            </div>
+                                            <div class="col-12 mb-30">
+                                                <label for="c_n_name">Company Name</label>
+                                                <input id="c_n_name" type="text">     
+                                            </div>
+                                            <div class="col-12 mb-30">
+                                                <label>Address <span>*</span></label>
+                                                <input placeholder="Street address" type="text">     
+                                            </div>
+                                            <div class="col-12 mb-30">
+                                                <input placeholder="Apartment, suite, unit etc. (optional)" type="text">     
+                                            </div> 
+                                            <div class="col-12 mb-30">
+                                                <label for="b_t_city">Town / City <span>*</span></label>
+                                                <input id="b_t_city" placeholder="Town / City" type="text">     
+                                            </div>
+                                            <div class="col-lg-6 mb-30">
+                                                <label for="s_f_name">State / County  <span>*</span></label>
+                                                <input id="s_f_name" type="text">    
+                                            </div> 
+                                            <div class="col-lg-6 mb-30">
+                                                <label for="b_p_zip">Postcode / Zip <span>*</span></label>
+                                                <input placeholder="Postcode / Zip" id="b_p_zip" type="text">    
+                                            </div> 
+                                            <div class="col-lg-6 mb-30">
+                                                <label for="b_n_email">Email Address <span>*</span></label>
+                                                <input id="b_n_email" type="text">    
+                                            </div> 
+                                            <div class="col-lg-6 mb-30">
+                                                <label>Phone   <span>*</span></label>
+                                                <input placeholder="Phone Number" type="text">    
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> --}}
+                                <div class="col-12">
+                                    <div class="order-notes">
+                                        <label for="note">Ghi chú</label>
+                                        <textarea name="note" id="note" placeholder="Ghi chú..."></textarea>
+                                    </div>    
+                                </div>     	    	    	    	    	    	    
+                            </div>
+                        
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        <div class="order-wrapper">
+                            <h3>Đơn hàng</h3>
+                            <div class="order-table table-responsive mb-30">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th class="product-name">Sản phẩm</th>
+                                            <th class="product-total">Thành tiền</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach($carts as $cart)
+                                        <tr>
+                                            <td class="product-name">{{ $cart['product_name'] }}<strong> × {{ $cart['product_qty'] }}</strong></td>
+                                            <td class="amount">{{ number_format($cart['product_total'], 0) }}đ</td>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <th>Tổng tiền</th>
+                                            <td>{{ number_format($total, 0) }}đ</td>
+                                        </tr>
+                                        @if($coupon)
+                                            @if($coupon['coupon_type'] == 1)  
+                                                @php
+                                                   $discount = ($total*$coupon['coupon_value'])/100;
+                                                    if($discount > $coupon['max_discount']) {
+                                                        $discount = $coupon['max_discount'];
+                                                    } 
+                                                @endphp
+                                                <tr>
+                                                    <th>Khuyến mãi</th>
+                                                    <td>-{{ number_format($discount, 0) }}đ</td>
+                                                </tr>
+                                            @else
+                                                <tr>
+                                                    <th>Khuyến mãi</th>
+                                                    <td>-{{ number_format($coupon['coupon_value'], 0) }}đ</td>
+                                                </tr>
+                                            @endif   
+                                        
+                                        @else
+                                        <tr>
+                                            <th>Khuyến mãi</th>
+                                            <td>0đ</td>
+                                        </tr>
+                                        @endif
+                                        @if($coupon)
+                                            @if($coupon['coupon_type'] == 1)     
+                                                @php
+                                                    $total_remain = $total - $discount;
+                                                @endphp    
+                                                <tr>
+                                                    <th>Tổng cộng</th>
+                                                    <td><strong>{{ number_format( $total_remain, 0) }}đ</strong></td>
+                                                </tr>
+                                            @else
+                                                @php
+                                                    $total_remain = $total - $coupon['coupon_value'];
+                                                @endphp  
+                                                <tr>
+                                                    <th>Tổng cộng</th>
+                                                    <td><strong>{{ number_format( $total_remain, 0) }}đ</strong></td>
+                                                </tr>
+                                            @endif
+                                        @else
+                                        <tr>
+                                            <th>Tổng cộng</th>
+                                            <td><strong>{{ number_format( $total, 0) }}đ</strong></td>
+                                        </tr>
+                                        @endif
+                                        
+                                    </tfoot>
+                                </table>    
+                            </div>
+                            <div class="payment-method">
+                                <div class="panel-default" style="position: relative;">
+                                    <input type="radio" checked value="1" name="payment_id" id="payment_id" style="position: absolute;width: 15px;right: 10px;">
+                                    <label class="righ_10" for="payment_id">Thanh toán COD</label>
+                                </div> 
+                                <div class="panel-default" style="position: relative;">
+                                    <input type="radio" value="2" name="payment_id" id="payment_id2" style="position: absolute;width: 15px;right: 10px;">
+                                    <label class="righ_10" for="payment_id2">Thanh toán trực tuyến</label>
+                                </div> 
+                                <div class="order-button">
+                                    <button type="submit">Đặt hàng</button> 
+                                </div>
+                            </div>    
+                        </div>  
+                    </div>
+                    @else
+                    <div class="col-12" style="text-align: center;">
+                        <img src="assets/img/cart/cart-empty.png" />
+                        <p style="font-size: 25px">Bạn chưa có sản phẩm nào trong giỏ hàng</p>
+                    </div>
+                    @endif
+                </div> 
+            </div>     
+        </div>    
+    </div>
+ </form>
+ <!--Checkout page section end-->
+ <!--organicfood wrapper start--> 
+ <div class="footer_food_wrapper">         
+     <!-- footer start -->
+     <footer class="footer pt-90 checkout">
+         <div class="container-fluid">
+             <div class="row">
+                 <div class="col-lg-3 col-md-12 col-xs-12">
+                     <!--Single Footer-->
+                     <div class="single_footer widget">
+                         <div class="single_footer_widget_inner">
+                             <div class="footer_logo">
+                                 <a href="#"><img src="assets/img/logo/logo_footer.png" alt=""></a>
+                             </div>
+                             <div class="footer_content">
+                                 <p>Address: 123 Main Street, Anytown, CA 12345 - USA.</p>
+                                 <p>Phone: +(000) 800 456 789</p>
+                                 <p>Email: Contact@posthemes.com</p>
+                             </div>
+                             <div class="footer_social">
+                                 <h4>Get in Touch:</h4>
+                                 <div class="footer_social_icon">
+                                     <a href="#"><i class="fa fa-twitter"></i></a>
+                                     <a href="#"><i class="fa fa-google-plus"></i></a>
+                                     <a href="#"><i class="fa fa-facebook"></i></a>
+                                     <a href="#"><i class="fa fa-youtube"></i></a>
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                     <!--Single Footer-->
+                 </div>
+                 <div class="col-lg-6 col-md-12 col-xs-12">
+                     <div class="footer_menu_list d-flex justify-content-between">
+                         <!--Single Footer-->
+                         <div class="single_footer widget">
+                             <div class="single_footer_widget_inner">   
+                                 <div class="footer_title">
+                                     <h2>Products</h2>
+                                 </div>
+                                 <div class="footer_menu">
+                                     <ul>
+                                         <li><a href="#">Prices drop</a></li>
+                                         <li><a href="#"> New products</a></li>
+                                         <li><a href="#"> Best sales</a></li>
+                                         <li><a href="#"> Contact us</a></li>
+                                         <li><a href="#"> My account</a></li>
+                                     </ul>
+                                 </div>
+                             </div>
+                         </div>
+                         <!--Single footer end-->   
+                         <!--Single footer start-->   
+                         <div class="single_footer widget">
+                             <div class="single_footer_widget_inner">   
+                                 <div class="footer_title">
+                                     <h2>Login</h2>
+                                 </div>
+                                 <div class="footer_menu">
+                                     <ul>
+                                         <li><a href="#">Sitemap</a></li>
+                                         <li><a href="#"> Stores</a></li>
+                                         <li><a href="#"> Login</a></li>
+                                         <li><a href="#"> Contact us</a></li>
+                                         <li><a href="#"> My account</a></li>
+                                     </ul>
+                                 </div>
+                             </div>
+                         </div>
+                         <!--Single Footer end-->
+                         <!--Single footer start-->   
+                         <div class="single_footer widget">
+                             <div class="single_footer_widget_inner">   
+                                 <div class="footer_title">
+                                     <h2> Your account </h2>
+                                 </div>
+                                 <div class="footer_menu">
+                                     <ul>
+                                         <li><a href="#">Personal info</a></li>
+                                         <li><a href="#"> Orders</a></li>
+                                         <li><a href="#"> Login</a></li>
+                                         <li><a href="#"> Credit slips</a></li>
+                                         <li><a href="#"> Addresses</a></li>
+                                     </ul> 
+                                 </div>
+                             </div>
+                         </div>
+                         <!--Single Footer end-->
+                     </div>
+                 </div>
+                 <div class="col-lg-3 col-md-12 col-xs-12">
+                     <div class="footer_title">
+                         <h2> Join Our Newsletter Now </h2>
+                     </div>
+                     <div class="footer_news_letter">
+                         <p>Get E-mail updates about our latest shop and special offers.</p>
+                         <div class="newsletter_form">
+                             <form action="#">
+                                 <input type="email" required placeholder="Your Email Address">
+                                 <input type="submit" value="Subscribe">
+                             </form>
+                         </div>
+                     </div>
+                     
+                 </div>
+             </div>
+         </div>
+         
+         <div class="copyright">
+             <div class="container-fluid">
+                 <div class="row">
+                     <div class="col-lg-6 col-md-6 col-xs-12">
+                         <div class="copyright_text">
+                             <p>Copyright 2018 <a href="#">Organicfood</a>. All Rights Reserved</p>
+                         </div>
+                     </div>
+                     <div class="col-lg-6 col-md-6 col-xs-12">
+                         <div class="footer_mastercard text-right">
+                             <a href="#"><img src="assets/img/brand/payment.png" alt=""></a>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+         </div>
+         
+     </footer>
+     
+     <!-- footer end -->  
+ </div>
+ <script src="assets/js/vendor/jquery-1.12.0.min.js"></script>
+ <script>
+    $('.choose-city').on('change',function(){
+        var city_id = $(this).val();
+        
+        $.ajax({
+            url: "ajax/load-district",
+            type: "GET",
+            data: {
+                city_id: city_id
+            },
+            success: function (data) {
+                $('.choose-district').html(data);
+            },
+            error: function () {
+                alert("Lỗi");
+            },
+        });
+    });
+
+    $('.choose-district').on('change',function(){
+        var district_id = $(this).val();
+        $.ajax({
+            url: "ajax/load-ward",
+            type: "GET",
+            data: {
+                district_id: district_id
+            },
+            success: function (data) {
+                $('.choose-ward').html(data);
+            },
+            error: function () {
+                alert("Lỗi");
+            },
+        });
+    });
+
+ </script>
+ @endsection

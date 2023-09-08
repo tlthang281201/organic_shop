@@ -499,7 +499,7 @@
                     .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
 
                 subtotal_hover.html(totalProductString + "đ");
-
+                $("#load-coupon").load("ajax/load-coupon-used");
                 $("#load-cart-total").load("ajax/load-cart-total");
             },
             error: function () {
@@ -508,7 +508,7 @@
         });
     }
     var inputElem = $(".cart-plus-minus-box");
-    inputElem.keyup(function (e) {
+    inputElem.change(function (e) {
         var session_id = $(e.target.closest("tbody")).data("row-id");
         var subtotal_hover = $(e.target.closest("tbody")).find(
             ".product-subtotal"
@@ -519,7 +519,6 @@
     	Cart Plus Minus Button
     ------------------------------ */
     var CartPlusMinus = $(".cart-plus-minus");
-
     CartPlusMinus.prepend('<div class="dec qtybutton">-</div>');
     CartPlusMinus.append('<div class="inc qtybutton">+</div>');
     $(".qtybutton").on("click", function () {

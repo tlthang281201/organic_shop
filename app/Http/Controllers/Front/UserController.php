@@ -68,7 +68,7 @@ class UserController extends Controller
         }
 
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password], $request->remember)) {
-            return redirect('/');
+            return redirect()->back();
         } else {
             return redirect('dang-nhap')->with('error','Thông tin đăng nhập không chính xác');
         }

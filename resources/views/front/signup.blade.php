@@ -250,6 +250,7 @@
                            <div class="col-12">
                                <div class="login_submit">
                                    <input value="Đăng ký" type="submit">
+                                   <span class="ml-4">Bạn đã có tài khoản? <a href="dang-nhap">Đăng nhập</a></span>
                                </div>
                            </div>    
                        </div>

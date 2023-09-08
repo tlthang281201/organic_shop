@@ -68,64 +68,7 @@
                                              </span>
                                          </a>
                                      </div>
-                                     <!--Mini Cart Box-->
-                                     {{-- <div class="mini_cart_box cart_box_one">
-                                         <div class="mini_cart_item">
-                                             <div class="mini_cart_img">
-                                                 <a href="#">
-                                                     <img src="assets/img/cart/1.jpg" alt="">
-                                                     <span class="cart_count">1</span>
-                                                 </a>
-                                             </div>
-                                             <div class="cart_info">
-                                                 <h5><a href="product-details.html">Mushroom Burger</a></h5>
-                                                 <span class="cart_price">$75.99</span>
-                                             </div>
-                                             <div class="cart_remove">
-                                                 <a href="#"><i class="zmdi zmdi-delete"></i></a>
-                                             </div>
-                                         </div>
-                                         <div class="mini_cart_item">
-                                             <div class="mini_cart_img">
-                                                 <a href="#">
-                                                     <img src="assets/img/cart/2.jpg" alt="">
-                                                     <span class="cart_count">1</span>
-                                                 </a>
-                                             </div>
-                                             <div class="cart_info">
-                                                 <h5><a href="#">Country Burger</a></h5>
-                                                 <span class="cart_price">$48.99</span>
-                                             </div>
-                                             <div class="cart_remove">
-                                                 <a href="#"><i class="zmdi zmdi-delete"></i></a>
-                                             </div>
-                                         </div>
-                                         
-                                         <div class="price_content">
-                                             <div class="cart_subtotals">
-                                                 <div class="price_inline">
-                                                     <span class="label">Subtotal </span>
-                                                     <span class="value">$143.49 </span>
-                                                 </div>
-                                                 <div class="price_inline">
-                                                     <span class="label">Shipping </span>
-                                                     <span class="value">$7.00</span>
-                                                 </div>
-                                                 <div class="price_inline">
-                                                     <span class="label">Taxes </span>
-                                                     <span class="value">$0.00</span>
-                                                 </div>
-                                             </div>
-                                             <div class="cart-total-price">
-                                                 <span class="label">Total </span>
-                                                 <span class="value">$85.99</span>
-                                             </div>
-                                         </div>
-                                         <div class="min_cart_checkout">
-                                             <a href="checkout.html">Checkout</a>
-                                         </div>
-                                     </div> --}}
-                                     <!--Mini Cart Box End -->
+                                     
                                  </div>
                              </div>
                              <div class="header_account">
@@ -237,14 +180,17 @@
                             </div> 
                              <div class="buttons-carts coupon">
                                  <h3>Mã giảm giá</h3>
-                                 <p>Nhập mã giảm giá của bạn (nếu có)</p>
+                                 <div id="load-coupon">
+                                    {{-- coupon --}}
+                                 </div>
                                     <input placeholder="Mã giảm giá" type="text" id="coupon" value=""> 
                                     <a onclick="checkCoupon()" style="color: white;cursor: pointer;" >Sử dụng</a>   
                                  
                              </div>
-                             <div id="coupon-error">
+                             <div id="coupon-error" class="mb-30">
                                 {{-- message --}}
                              </div>
+                             
                          </div> 
                          <div class="col-lg-5 col-sm-5 col-md-5" id="load-cart-total">
                               {{-- cart total --}}
@@ -393,33 +339,47 @@
  <script type="text/javascript">
     $(document).ready(function(){
 
+        $('#load-coupon').load('ajax/load-coupon-used');
         $('#load-cart-total').load('ajax/load-cart-total');
     });
     function checkCoupon()
-        {
-            let code = $('#coupon').val();
-            if($.trim(code) == "") {
-                $('#coupon-error').html(`<span class="text-danger">Vui lòng nhập mã giảm giá</span>`);
-                return;
-            }
-            $.ajax({
-                url: "ajax/coupon",
-                type: "GET",
-                data: {
-                    code: code
-                },
-                success: function (data) {
-                    $('#load-cart-total').load('ajax/load-cart-total');
-                    if(data['notify'] == 'danger') {
-                        $('#coupon-error').html(`<span class="text-danger">`+data['message']+`</span>`);
-                    } else {
-                        $('#coupon-error').html(`<span class="text-success">`+data['message']+`</span>`);
-                    }  
-                },
-                error: function () {
-                    alert("Lỗi");
-                },
-            });
+    {
+        let code = $('#coupon').val();
+        if($.trim(code) == "") {
+            $('#coupon-error').html(`<span class="text-danger">Vui lòng nhập mã giảm giá</span>`);
+            return;
         }
+        $.ajax({
+            url: "ajax/coupon",
+            type: "GET",
+            data: {
+                code: code
+            },
+            success: function (data) {
+                $('#load-cart-total').load('ajax/load-cart-total');
+                if(data['notify'] == 'danger') {
+                    $('#coupon-error').html(`<span class="text-danger">`+data['message']+`</span>`);
+                } else {
+                    $('#load-coupon').load('ajax/load-coupon-used');
+                }  
+            },
+            error: function () {
+                alert("Lỗi");
+            },
+        });
+    }
+    function removeCoupon() {
+        $.ajax({
+            url: "ajax/remove-coupon",
+            type: "GET",
+            success: function () {
+                $('#load-cart-total').load('ajax/load-cart-total');
+                $('#load-coupon').load('ajax/load-coupon-used');
+            },
+            error: function () {
+                alert("Lỗi");
+            },
+        });
+    }
  </script>
 @endsection
