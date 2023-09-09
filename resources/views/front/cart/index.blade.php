@@ -361,6 +361,7 @@
                     $('#coupon-error').html(`<span class="text-danger">`+data['message']+`</span>`);
                 } else {
                     $('#load-coupon').load('ajax/load-coupon-used');
+                    $('#coupon-error').html('');
                 }  
             },
             error: function () {

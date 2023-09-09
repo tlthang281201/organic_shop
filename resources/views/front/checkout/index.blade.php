@@ -338,13 +338,15 @@
                                 </table>    
                             </div>
                             <div class="payment-method">
-                                <div class="panel-default" style="position: relative;">
+                                <div class="panel-default" style="position: relative;height: 53px;">
                                     <input type="radio" checked value="1" name="payment_id" id="payment_id" style="position: absolute;width: 15px;right: 10px;">
-                                    <label class="righ_10" for="payment_id">Thanh toán COD</label>
+                                    <label style="margin-left: 80px" class="righ_10" for="payment_id">Thanh toán COD</label>
+                                    <img style="position: absolute;width: 100px;height: 50px;top: 0;" src="assets/img/ship/ship-cod.jpg" />
                                 </div> 
-                                <div class="panel-default" style="position: relative;">
+                                <div class="panel-default mt-20" style="position: relative;height: 53px;">
                                     <input type="radio" value="2" name="payment_id" id="payment_id2" style="position: absolute;width: 15px;right: 10px;">
-                                    <label class="righ_10" for="payment_id2">Thanh toán trực tuyến</label>
+                                    <label style="margin-left: 80px"  class="righ_10" for="payment_id2">Thanh toán trực tuyến VNPay</label>
+                                    <img style="position: absolute;top: 0;width: 100px;height: 50px;" src="assets/img/ship/vnpay.png" />
                                 </div> 
                                 <div class="order-button">
                                     <button type="submit">Đặt hàng</button> 
