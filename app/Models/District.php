@@ -21,4 +21,12 @@ class District extends Model
     public function ward() {
         return $this->hasMany(Ward::class,'district_id','id');
     }
+
+    public function order() {
+        return $this->hasMany(Order::class,'city','id');
+    }
+
+    public function user() {
+        return $this->hasMany(User::class,'district','id');
+    }
 }

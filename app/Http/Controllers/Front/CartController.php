@@ -26,7 +26,7 @@ class CartController extends Controller
     }
     public function add(Request $request) {
         $product = $this->productService->find($request->product_id);
-        if($product->stocks <= 0) {
+        if($product->stocks <= 0 || $request->product_qty > $product->stocks ) {
             $response['error'] = "Sản phẩm này đã hết hàng";
             return $response;
         }
@@ -46,6 +46,7 @@ class CartController extends Controller
                     'session_id' => $sessionId,
                     'product_name' => $product->product_name,
                     'product_id' => $product->id,
+                    'product_stocks' => $product->stocks,
                     'product_price' => $product->discount ?? $product->price,
                     'product_image' => $product->productImage[0]->path,
                     'product_qty' => $request->product_qty,
@@ -62,6 +63,7 @@ class CartController extends Controller
                 'session_id' => $sessionId,
                 'product_name' => $product->product_name,
                 'product_id' => $product->id,
+                'product_stocks' => $product->stocks,
                 'product_price' => $product->discount ?? $product->price,
                 'product_image' => $product->productImage[0]->path,
                 'product_qty' => $request->product_qty,

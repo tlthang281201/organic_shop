@@ -11,5 +11,9 @@ class Shipper extends Model
     public $timestamps = false;
     protected $table = 'shippers';
     protected $primaryKey = 'id';
-    protected $guarded = [];    
+    protected $guarded = [];  
+    
+    public function order() {
+        return $this->hasMany(Order::class,'shipper_id','id');
+    }
 }

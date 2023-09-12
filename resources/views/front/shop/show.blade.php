@@ -140,7 +140,8 @@
                       <div class="user_info_top">
                         @if(Auth::check())
                         <ul>
-                          <li><a href="">{{ Auth::user()->name }}</a></li>
+                          <li style="border-bottom: 1px solid gray">{{ Auth::user()->name }}</li>
+                          <li class="mt-2"><a href="thong-tin-ca-nhan">Thông tin cá nhân</a></li>
                           <li><a href="log-out" onclick="event.preventDefault();
                             document.getElementById('logout-form').submit();">Đăng xuất</a></li>
                           <form id="logout-form" action="log-out" method="POST" class="d-none">
@@ -259,7 +260,9 @@
                         type="number"
                         value="1"
                         min="1"
+                        max="{{ $product->stocks }}"
                         id="qty"
+                        onkeyup="if(this.value <= 0 || this.value > {{ $product->stocks }} ){this.value = {{ $product->stocks }};}"
                         name="qtybutton"
                       />
                     </div>
@@ -703,8 +706,12 @@
                     product_qty: $qty,
                 },
                 success: function (data) {
-                  $(".cart_count").html(data['cart_count']);
-                  $(".message").fadeIn().delay(1000).fadeOut();
+                  if (data["error"] != null) {
+                      $(".outofstock").fadeIn().delay(1000).fadeOut();
+                  } else {
+                      $(".cart_count").html(data["cart_count"]);
+                      $(".message").fadeIn().delay(1000).fadeOut();
+                  }
                 },
                 error: function () {
                     alert("Looix");

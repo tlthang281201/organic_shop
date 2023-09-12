@@ -13,6 +13,9 @@ use App\Models\Ward;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use App\Utilities\VNPay;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Validator;
 
 class CheckOutController extends Controller
 {
@@ -70,6 +73,26 @@ class CheckOutController extends Controller
         $coupon = Session::get('coupon');
         $carts = Session::get('cart');
         $discount = 0;
+
+        Validator::make($request->all(), [
+            'address' => 'required|string'
+        ]);
+
+        $outOfStock = 0;
+        $notify = 'Sản phẩm ';
+        foreach($carts as $key => $cart){
+            $inventory = Product::find($cart['product_id']);
+            if($cart['product_qty'] > $inventory->stocks) {
+                $outOfStock++;
+                $notify .= ''.$carts[$key]['product_name'].', ';
+            }
+        }
+        $notify .= 'không đủ hàng tồn kho để đặt hàng';
+
+        if($outOfStock != 0) {
+            return redirect()->back()->with('outofstock',$notify);
+        }
+
         if($coupon){
             if($coupon['coupon_type'] == 1) {
                 $discount = ($subtotal*$coupon['coupon_value'])/100;
@@ -87,7 +110,7 @@ class CheckOutController extends Controller
             'user_id' => Auth::user()->id,
             'order_date' => $now,
             'ship_date' => null,
-            'status' => 'Chưa giao hàng',
+            'status' => 'Chờ xác nhận',
             'deleted' => 0,
             'payment_id' => $request->payment_id,
             'paid' => 0,
@@ -103,34 +126,111 @@ class CheckOutController extends Controller
             'total' => $subtotal - $discount
         ]);
 
-        foreach($carts as $cart) {
-            $product = Product::where('id',$cart['product_id'])->first();
-            if($product->stocks <= $cart['product_qty']) {
-                $updateStock = Product::where('id',$cart['product_id'])->update(['stocks'=> 0]);
-            } else {
-                $updateStock = Product::where('id',$cart['product_id'])->update(['stocks'=> $product->stocks - $cart['product_qty']]);
+
+        if($request->payment_id == 2) {
+            $data_url = VNPay::vnpay_create_payment([
+                'vnp_TxnRef' =>  $order_code.$order->id,
+                'vnp_OrderInfo' => "Thanh toán đơn hàng orgarnicshop",
+                'vnp_Amount' => $subtotal - $discount,
+            ]);
+
+            return redirect()->to($data_url);
+        } else {
+            foreach($carts as $cart) {
+                $product = Product::where('id',$cart['product_id'])->first();
+                if($product->stocks <= $cart['product_qty']) {
+                    $updateStock = Product::where('id',$cart['product_id'])->update(['stocks'=> 0]);
+                } else {
+                    $updateStock = Product::where('id',$cart['product_id'])->update(['stocks'=> $product->stocks - $cart['product_qty']]);
+                }
+    
+                $data = [
+                    'order_id' => $order->id,
+                    'product_id' => $cart['product_id'],
+                    'quantity' => $cart['product_qty'],
+                    'total' => $cart['product_total']
+                ];
+                OrderDetail::create($data);
             }
 
-            $data = [
-                'order_id' => $order->id,
-                'product_id' => $cart['product_id'],
-                'quantity' => $cart['product_qty'],
-                'total' => $cart['product_total']
-            ];
-            OrderDetail::create($data);
+            if($coupon != null) {
+                $code = Coupon::where('code',$coupon['coupon_code'])->first();
+                $descQtyCoupon = Coupon::where('code',$coupon['coupon_code'])->update(['quantity' => $code->quantity - 1]);
+            }
+            
+    
+            Session::forget('cart');
+            Session::forget('coupon');
+            Session::save();
+
+            return redirect('thong-tin-ca-nhan/don-hang/'.$order_code);
         }
-
-        $code = Coupon::where('code',$coupon['coupon_code'])->first();
-        $descQtyCoupon = Coupon::where('code',$coupon['coupon_code'])->update(['quantity' => $code->quantity - 1]);
-
-        Session::forget('cart');
-        Session::forget('coupon');
-        Session::save();
-        dd("success");
     }
 
-    public function vnPayCheck()
+    public function vnPayCheck(Request $request)
     {
+        $vnp_ResponseCode = $request->get('vnp_ResponseCode');
+        $vnp_TxnRef = $request->get('vnp_TxnRef');
+        $vnp_Amount = $request->get('vnp_Amount');
+        $subtotal = $this->countTotal();
+        $coupon = Session::get('coupon');
+        $carts = Session::get('cart');
+        $order_id = substr($vnp_TxnRef, 10);
+        $now = date(now());
+
+        if($vnp_ResponseCode != null){
+            if($vnp_ResponseCode == 00) {
+                $updateOrder = Order::where('id',$order_id)->update(['paid' => 1, 'pay_date'=>$now]);
+
+                foreach($carts as $cart) {
+                    $product = Product::where('id',$cart['product_id'])->first();
+                    if($product->stocks <= $cart['product_qty']) {
+                        $updateStock = Product::where('id',$cart['product_id'])->update(['stocks'=> 0]);
+                    } else {
+                        $updateStock = Product::where('id',$cart['product_id'])->update(['stocks'=> $product->stocks - $cart['product_qty']]);
+                    }
+                    
+                    $data = [
+                        'order_id' => $order_id,
+                        'product_id' => $cart['product_id'],
+                        'quantity' => $cart['product_qty'],
+                        'total' => $cart['product_total']
+                    ];
+                    OrderDetail::create($data);
+                }
+
+                if($coupon != null) {
+                    $code = Coupon::where('code',$coupon['coupon_code'])->first();
+                    $descQtyCoupon = Coupon::where('code',$coupon['coupon_code'])->update(['quantity' => $code->quantity - 1]);$code = Coupon::where('code',$coupon['coupon_code'])->first();
+                }
         
+                Session::forget('cart');
+                Session::forget('coupon');
+                Session::save();
+                $order = Order::where('id',$order_id)->first();
+                $this->sendMail(Auth::user()->email,$order);
+                return redirect('check-out/result')->with('success','Thanh toán đơn hàng thành công! Vui lòng kiểm tra email');
+            } else {
+                $deleteOrder = Order::where('id',$order_id)->delete();
+                return redirect('check-out/result')->with('error','Thanh toán đơn hàng thất bại!');
+            }
+        }
     }
+
+    public function result()
+    {
+        return view('front.checkout.result');
+    }
+
+    public function sendMail($email, $order)
+    {
+        $email_to = $email;
+        Mail::send('front.checkout.email',compact('order'),
+        function ($message) use ($email_to){
+            $message->from('tlthang19it3@gmail.com','Organic Shop');
+            $message->to($email_to, $email_to);
+            $message->subject('Thông tin đơn hàng');
+        });
+    }
+
 }

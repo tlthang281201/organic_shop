@@ -82,7 +82,8 @@
                       <div class="user_info_top">
                         @if(Auth::check())
                         <ul>
-                          <li><a href="">{{ Auth::user()->name }}</a></li>
+                          <li style="border-bottom: 1px solid gray">{{ Auth::user()->name }}</li>
+                          <li class="mt-2"><a href="thong-tin-ca-nhan">Thông tin cá nhân</a></li>
                           <li><a href="log-out" onclick="event.preventDefault();
                             document.getElementById('logout-form').submit();">Đăng xuất</a></li>
                           <form id="logout-form" action="log-out" method="POST" class="d-none">
@@ -117,12 +118,12 @@
             <div class="row">
               <div class="col-12">
                 <div class="slider__content">
-                  <p>Exclusive Offer -10% Off This Week</p>
-                  <h2>Live <strong>healthy</strong> with a glass</h2>
-                  <h3>of <strong>fruit juice</strong> every day</h3>
-                  <h6>Starting at<span>$42.99</span></h6>
+                  <p>Khuyến mãi ưu đãi cuối tuần</p>
+                  <h2>Sống <strong>khoẻ</strong> với một ly</h2>
+                  <h3> <strong>nước ép trái cây</strong> mỗi ngày</h3>
+                  <h6></h6>
                   <div class="slider_btn">
-                    <a href="shop.html">Shopping now</a>
+                    <a href="shop">Shopping now</a>
                   </div>
                 </div>
               </div>
@@ -136,12 +137,11 @@
             <div class="row">
               <div class="col-12">
                 <div class="slider__content">
-                  <p>Exclusive Offer -10% Off This Week</p>
-                  <h2>We <strong>provide</strong> the best</h2>
-                  <h3>product <strong> for you </strong></h3>
-                  <h6>Starting at <span>$42.99</span></h6>
+                  <p>Khuyến mãi ưu đãi cuối tuần</p>
+                  <h2>Chúng tôi <strong>cung cấp</strong> sản phẩm</h2>
+                  <h3>tốt nhất <strong> dành cho bạn </strong></h3>
                   <div class="slider_btn">
-                    <a href="shop.html">Shopping now</a>
+                    <a href="shop">Shopping now</a>
                   </div>
                 </div>
               </div>

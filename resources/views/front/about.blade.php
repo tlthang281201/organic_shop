@@ -138,7 +138,8 @@
                                     <div class="user_info_top">
                                       @if(Auth::check())
                                       <ul>
-                                        <li><a href="">{{ Auth::user()->name }}</a></li>
+                                        <li style="border-bottom: 1px solid gray">{{ Auth::user()->name }}</li>
+                                        <li class="mt-2"><a href="thong-tin-ca-nhan">Thông tin cá nhân</a></li>
                                         <li><a href="log-out" onclick="event.preventDefault();
                                           document.getElementById('logout-form').submit();">Đăng xuất</a></li>
                                         <form id="logout-form" action="log-out" method="POST" class="d-none">

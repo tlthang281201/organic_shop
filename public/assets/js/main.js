@@ -509,10 +509,15 @@
     }
     var inputElem = $(".cart-plus-minus-box");
     inputElem.change(function (e) {
+        var stock = $("#stocks").val();
         var session_id = $(e.target.closest("tbody")).data("row-id");
         var subtotal_hover = $(e.target.closest("tbody")).find(
             ".product-subtotal"
         );
+        if ($(this).val() <= 0) {
+            $(this).val(1);
+        }
+        console.log(stock);
         update(session_id, e.target.value, subtotal_hover);
     });
     /*----------------------------

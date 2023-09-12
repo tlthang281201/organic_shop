@@ -20,6 +20,7 @@ class User extends Authenticatable
     public $timestamps = false;
     protected $fillable = [
         'name',
+        'birthdate',
         'email',
         'phone',
         'level',
@@ -48,4 +49,20 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function order() {
+        return $this->hasMany(Order::class,'user_id','id');
+    }
+
+    public function getCity() {
+        return $this->belongsTo(City::class,'city','id');
+    }
+
+    public function getDistrict() {
+        return $this->belongsTo(District::class,'district','id');
+    }
+
+    public function getWard() {
+        return $this->belongsTo(Ward::class,'ward','id');
+    }
 }

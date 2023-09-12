@@ -3222,7 +3222,6 @@ span.control_labels {
 /* table-responsive */
 .cart_main_area {
     border-bottom: 1px solid #ededed;
-    padding: 90px 0;
 }
 .table-content.table-responsive table thead tr th,
 .table-content.table-responsive table tbody tr td {
@@ -4268,8 +4267,8 @@ section.main-content-area.error_pages {
     top: 7px;
     width: auto;
 }
-.account-login-form input[type="text"],
-.account-login-form input[type="password"] {
+.account-login-form input,
+.account-login-form select {
     background: transparent none repeat scroll 0 0;
     border-radius: 3px;
     height: 40px;
@@ -4423,6 +4422,12 @@ nav .pagination {
     border-color: #dc3545 !important;
 }
 .message {
+    position: fixed;
+    right: 20px;
+    z-index: 9999;
+    top: 20px;
+}
+.updateinfo {
     position: fixed;
     right: 20px;
     z-index: 9999;

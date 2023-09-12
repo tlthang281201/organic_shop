@@ -33,7 +33,7 @@
       <span>Thêm sản phẩm vào giỏ hàng thành công</span>
     </div>
     <div class="alert alert-danger outofstock" style="display: none">
-      <span>Sản phẩm này đã hết hàng</span>
+      <span>Sản phẩm này đã hết hàng hoặc không đủ hàng để đặt</span>
     </div>
     @yield('body')
 

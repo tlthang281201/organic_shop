@@ -79,7 +79,8 @@
                                     <div class="user_info_top">
                                       @if(Auth::check())
                                       <ul>
-                                        <li><a href="">{{ Auth::user()->name }}</a></li>
+                                        <li style="border-bottom: 1px solid gray">{{ Auth::user()->name }}</li>
+                                        <li class="mt-2"><a href="thong-tin-ca-nhan">Thông tin cá nhân</a></li>
                                         <li><a href="log-out" onclick="event.preventDefault();
                                           document.getElementById('logout-form').submit();">Đăng xuất</a></li>
                                         <form id="logout-form" action="log-out" method="POST" class="d-none">
@@ -167,7 +168,7 @@
                                 </div>
                                 <div class="col-12 mb-30">
                                     <label>Địa chỉ cụ thể<span>*</span></label>
-                                    <input required name="address" id="address" type="text">     
+                                    <input name="address" id="address" type="text" required>     
                                 </div>
                                 <div class="col-lg-6 mb-30">
                                     <label for="b_email">Địa chỉ email<span>*</span></label>
@@ -333,10 +334,15 @@
                                             <td><strong>{{ number_format( $total, 0) }}đ</strong></td>
                                         </tr>
                                         @endif
-                                        
+                                        @if(Session::has('outofstock'))
+                                            <span class="text-danger mb-20">
+                                                <strong>{{ Session::get('outofstock') }}</strong>
+                                            </span>
+                                        @endif 
                                     </tfoot>
                                 </table>    
                             </div>
+                            <h3>Chọn phương thức thanh toán</h3>
                             <div class="payment-method">
                                 <div class="panel-default" style="position: relative;height: 53px;">
                                     <input type="radio" checked value="1" name="payment_id" id="payment_id" style="position: absolute;width: 15px;right: 10px;">
@@ -345,7 +351,7 @@
                                 </div> 
                                 <div class="panel-default mt-20" style="position: relative;height: 53px;">
                                     <input type="radio" value="2" name="payment_id" id="payment_id2" style="position: absolute;width: 15px;right: 10px;">
-                                    <label style="margin-left: 80px"  class="righ_10" for="payment_id2">Thanh toán trực tuyến VNPay</label>
+                                    <label style="margin-left: 80px"  class="righ_10" for="payment_id2">Thanh toán trực tuyến</label>
                                     <img style="position: absolute;top: 0;width: 100px;height: 50px;" src="assets/img/ship/vnpay.png" />
                                 </div> 
                                 <div class="order-button">
@@ -380,12 +386,12 @@
                                  <a href="#"><img src="assets/img/logo/logo_footer.png" alt=""></a>
                              </div>
                              <div class="footer_content">
-                                 <p>Address: 123 Main Street, Anytown, CA 12345 - USA.</p>
-                                 <p>Phone: +(000) 800 456 789</p>
-                                 <p>Email: Contact@posthemes.com</p>
+                                <p>Địa chỉ: Đường Nam Kỳ Khởi Nghĩa, TP Đà Nẵng</p>
+                                <p>Điện thoại: 0123 456 789</p>
+                                <p>Email: thang281201@gmail.com</p>
                              </div>
                              <div class="footer_social">
-                                 <h4>Get in Touch:</h4>
+                                 <h4>Theo dõi ngay:</h4>
                                  <div class="footer_social_icon">
                                      <a href="#"><i class="fa fa-twitter"></i></a>
                                      <a href="#"><i class="fa fa-google-plus"></i></a>
@@ -402,54 +408,54 @@
                          <!--Single Footer-->
                          <div class="single_footer widget">
                              <div class="single_footer_widget_inner">   
-                                 <div class="footer_title">
-                                     <h2>Products</h2>
-                                 </div>
-                                 <div class="footer_menu">
-                                     <ul>
-                                         <li><a href="#">Prices drop</a></li>
-                                         <li><a href="#"> New products</a></li>
-                                         <li><a href="#"> Best sales</a></li>
-                                         <li><a href="#"> Contact us</a></li>
-                                         <li><a href="#"> My account</a></li>
-                                     </ul>
-                                 </div>
+                                <div class="footer_title">
+                                    <h2>Sản phẩm</h2>
+                                </div>
+                                <div class="footer_menu">
+                                    <ul>
+                                        <li><a href="#"> Rau củ quả</a></li>
+                                        <li><a href="#"> Trái cây</a></li>
+                                        <li><a href="#"> Hải sản</a></li>
+                                        <li><a href="#"> Thịt gà</a></li>
+                                        <li><a href="#"> Thịt bò</a></li>
+                                    </ul>
+                                </div>
                              </div>
                          </div>
                          <!--Single footer end-->   
                          <!--Single footer start-->   
                          <div class="single_footer widget">
                              <div class="single_footer_widget_inner">   
-                                 <div class="footer_title">
-                                     <h2>Login</h2>
-                                 </div>
-                                 <div class="footer_menu">
-                                     <ul>
-                                         <li><a href="#">Sitemap</a></li>
-                                         <li><a href="#"> Stores</a></li>
-                                         <li><a href="#"> Login</a></li>
-                                         <li><a href="#"> Contact us</a></li>
-                                         <li><a href="#"> My account</a></li>
-                                     </ul>
-                                 </div>
+                                <div class="footer_title">
+                                    <h2>Chuyên mục</h2>
+                                </div>
+                                <div class="footer_menu">
+                                    <ul>
+                                        <li><a href="#"> Cẩm nang sức khoẻ</a></li>
+                                        <li><a href="#"> An toàn thực phẩm</a></li>
+                                        <li><a href="#"> Kiến thức</a></li>
+                                        <li><a href="#"> Món ngon mỗi ngày</a></li>
+                                        <li><a href="#"> Góc khuyến nông</a></li>
+                                    </ul>
+                                </div>
                              </div>
                          </div>
                          <!--Single Footer end-->
                          <!--Single footer start-->   
                          <div class="single_footer widget">
                              <div class="single_footer_widget_inner">   
-                                 <div class="footer_title">
-                                     <h2> Your account </h2>
-                                 </div>
-                                 <div class="footer_menu">
-                                     <ul>
-                                         <li><a href="#">Personal info</a></li>
-                                         <li><a href="#"> Orders</a></li>
-                                         <li><a href="#"> Login</a></li>
-                                         <li><a href="#"> Credit slips</a></li>
-                                         <li><a href="#"> Addresses</a></li>
-                                     </ul> 
-                                 </div>
+                                <div class="footer_title">
+                                    <h2>Chăm sóc khách hàng</h2>
+                                </div>
+                                <div class="footer_menu">
+                                    <ul>
+                                        <li><a href="#"> Chính sách đổi trả</a></li>
+                                        <li><a href="#"> Chính sách giao hàng</a></li>
+                                        <li><a href="#"> Chính sách thanh toán</a></li>
+                                        <li><a href="#"> Điều khoản sử dụng</a></li>
+                                        <li><a href="#"> Quy định đơn đặt hàng</a></li>
+                                    </ul>
+                                </div>
                              </div>
                          </div>
                          <!--Single Footer end-->
@@ -457,7 +463,7 @@
                  </div>
                  <div class="col-lg-3 col-md-12 col-xs-12">
                      <div class="footer_title">
-                         <h2> Join Our Newsletter Now </h2>
+                        <h2> Đăng kí nhận tin khuyến mãi </h2>
                      </div>
                      <div class="footer_news_letter">
                          <p>Get E-mail updates about our latest shop and special offers.</p>
