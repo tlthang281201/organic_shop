@@ -16,4 +16,16 @@ class Shipper extends Model
     public function order() {
         return $this->hasMany(Order::class,'shipper_id','id');
     }
+
+    public function getcity(){
+        return $this->belongsTo(City::class,'city','id');
+    }
+
+    public function getdistrict(){
+        return $this->belongsTo(District::class,'district','id');
+    }
+
+    public function getward(){
+        return $this->belongsTo(Ward::class,'ward','id');
+    }
 }

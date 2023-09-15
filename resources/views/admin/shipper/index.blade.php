@@ -28,6 +28,11 @@
     <section class="content">
       <div class="container-fluid">
         <div class="row">
+          @if(Session::has('danger'))
+            <div class="col-md-12 alert alert-danger">
+                <span>{{ Session::get('danger') }}</span>
+            </div>
+          @endif
           <div class="col-12">
             <!-- /.card -->
 
@@ -39,7 +44,7 @@
                   <tr>
                     <th>Họ và tên</th>
                     <th>Số điện thoại</th>
-                    <th>Địa chỉ nhà</th>
+                    <th>Địa chỉ</th>
                     <th>Hành động</th>
                   </tr>
                   </thead>
@@ -48,10 +53,10 @@
                     <tr>
                         <td>{{ $shipper->name }}</td>
                         <td>{{ $shipper->phone }}</td>
-                        <td>{{ $shipper->address }}</td>
+                        <td>{{ $shipper->address }}, {{ $shipper->getward->name }}, {{ $shipper->getdistrict->name }}, {{ $shipper->getcity->name }}</td>
                         <td>
-                            <i class="nav-icon fas fa-pen"></i>
-                            <i class="nav-icon fas fa-trash" style="margin-left: 10px"></i>
+                          <a href="admin/edit-shipper/{{ $shipper->id }}"><i class="nav-icon fas fa-pen"></i></a>
+                            <a href="admin/remove-shipper/{{ $shipper->id }}"><i class="nav-icon fas fa-trash" style="margin-left: 10px"></i></a>
                         </td>
                     </tr>
                     @endforeach

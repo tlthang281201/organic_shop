@@ -44,7 +44,6 @@
                     <th>Thành phố</th>
                     <th>Quận</th>
                     <th>Phường</th>
-                    <th>Hành động</th>
                   </tr>
                   </thead>
                   <tbody>
@@ -57,10 +56,6 @@
                         <td>{{ $user->city != null ? $user->getCity->name : "Chưa cập nhập" }}</td>
                         <td>{{ $user->district != null ? $user->getDistrict->name : "Chưa cập nhập" }}</td>
                         <td>{{ $user->ward != null ? $user->getWard->name : "Chưa cập nhập" }}</td>
-                        <td>
-                            <i class=" fas fa-pen"></i>
-                            <i class=" fas fa-trash" style="margin-left: 10px"></i>
-                        </td>
                     </tr>
                     @endforeach
                   </tbody>

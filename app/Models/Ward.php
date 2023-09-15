@@ -25,4 +25,8 @@ class Ward extends Model
     public function user() {
         return $this->hasMany(User::class,'ward','id');
     }
+
+    public function shipper() {
+        return $this->hasMany(Shipper::class,'city','id');
+    }
 }

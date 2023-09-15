@@ -28,6 +28,11 @@
     <section class="content">
       <div class="container-fluid">
         <div class="row">
+          @if(Session::has('danger'))
+            <div class="col-md-12 alert alert-danger">
+                <span>{{ Session::get('danger') }}</span>
+            </div>
+          @endif
           <div class="col-12">
             <!-- /.card -->
 
@@ -42,6 +47,7 @@
                     <th>Giá tiền</th>
                     <th>Tồn kho</th>
                     <th>Nổi bật</th>
+                    <th>Hiển thị</th>
                     <th>Hành động</th>
                   </tr>
                   </thead>
@@ -52,10 +58,21 @@
                         <td>{{ $product->product_name }}</td>
                         <td>{{ number_format($product->price,0) }}đ</td>
                         <td>{{ $product->stocks }}</td>
-                        <td>{{ $product->featured }}</td>
+
+                        @if($product->featured == 1)
+                        <td><a href="admin/update-featured-product/{{ $product->id }}"><i style="color: green" class="fas fa-check"></i></a></td>
+                        @else
+                        <td><a href="admin/update-featured-product/{{ $product->id }}"><i style="color: red" class="fas fa-times"></i></a></td>
+                        @endif
+
+                        @if($product->published == 1)
+                        <td><a href="admin/update-published-product/{{ $product->id }}"><i style="color: green" class="fas fa-eye"></i></a></td>
+                        @else
+                        <td><a href="admin/update-published-product/{{ $product->id }}"><i style="color: red" class="fas fa-eye-slash"></i></a></td>
+                        @endif
                         <td>
-                            <i class="nav-icon fas fa-pen"></i>
-                            <i class="nav-icon fas fa-trash" style="margin-left: 10px"></i>
+                          <a href="admin/edit-product/{{ $product->id }}"><i class="nav-icon fas fa-pen"></i></a>
+                            <a href="admin/remove-product/{{ $product->id }}"><i class="nav-icon fas fa-trash" style="margin-left: 10px;color: red"></i></a>
                         </td>
                     </tr>
                     @endforeach

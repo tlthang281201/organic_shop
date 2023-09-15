@@ -28,6 +28,11 @@
     <section class="content">
       <div class="container-fluid">
         <div class="row">
+          @if(Session::has('danger'))
+            <div class="col-md-12 alert alert-danger">
+                <span>{{ Session::get('danger') }}</span>
+            </div>
+          @endif
           <div class="col-12">
             <!-- /.card -->
 
@@ -50,10 +55,14 @@
                         <td>{{ $category->name }}</td>
                         <td>{{ $category->description }}</td>
                         <td>{{ $category->alias }}</td>
-                        <td>{{ $category->published }}</td>
+                        @if($category->published == 1)
+                        <td><a href="admin/update-published-category/{{ $category->id }}"><i style="color: green" class="fas fa-eye"></i></a></td>
+                        @else
+                        <td><a href="admin/update-published-category/{{ $category->id }}"><i style="color: red" class="fas fa-eye-slash"></i></a></td>
+                        @endif
                         <td>
-                            <i class="nav-icon fas fa-pen"></i>
-                            <i class="nav-icon fas fa-trash" style="margin-left: 10px"></i>
+                          <a href="admin/edit-category/{{ $category->id }}"><i class="nav-icon fas fa-pen"></i></a>
+                            <a href="admin/remove-category/{{ $category->id }}"><i class="nav-icon fas fa-trash" style="margin-left: 10px;color: red"></i></a>
                         </td>
                     </tr>
                     @endforeach

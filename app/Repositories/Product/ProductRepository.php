@@ -13,7 +13,7 @@ class ProductRepository extends BaseRepositories implements ProductRepositoryInt
         return Product::class;
     }
     
-    public function getRelatedProducts($product,$limit = 4)
+    public function getRelatedProducts($product,$limit = 8)
     {
         return $this->model->where('cate_id',$product->cate_id)->where('published',1)->limit($limit)->get();
     }
@@ -39,7 +39,6 @@ class ProductRepository extends BaseRepositories implements ProductRepositoryInt
     {
         $search = $req->search ?? '';
         $products = Category::where('alias',$alias)->first()->products->toQuery();
-
         $products = $products->where('product_name','like','%'.$search.'%')->where('published',1);
         $products = $this->filter($products,$req);
         $products = $this->sortAndPagination($products, $req);
@@ -49,9 +48,8 @@ class ProductRepository extends BaseRepositories implements ProductRepositoryInt
 
     private function sortAndPagination($products, $req)
     {
-        $perPage = 9;
+        $perPage = 12;
         $sortBy = $req->sort_by ?? 'latest';
-
         switch($sortBy) {
             case 'latest':
                 $products = $products->orderByDesc('id');

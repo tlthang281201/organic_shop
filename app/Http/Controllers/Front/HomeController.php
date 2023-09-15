@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
 use App\Models\Contact;
+use App\Models\Product;
 use App\Service\Product\ProductServiceInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -19,8 +20,10 @@ class HomeController extends Controller
     public function index()
     {
         $featuredProducts = $this->productService->getFeaturedProducts();
-
-        return view('front.index',compact('featuredProducts'));
+        $discountProducts = Product::where('discount','>',0)->orderByDesc('id')->get();
+        $newProduct = Product::orderByDesc('id')->get();
+        $randomProduct = Product::inRandomOrder()->limit(6)->get();
+        return view('front.index',compact('featuredProducts','discountProducts','newProduct','randomProduct'));
     }
 
     public function about()

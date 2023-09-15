@@ -167,7 +167,7 @@
                                                     <td><span class="text-info">{{ $order->status }}</span></td>
                                                     @elseif($order->status == 'Đã xác nhận')
                                                     <td><span class="text-success">{{ $order->status }}</span></td>
-                                                    @elseif($order->status == 'Đang giao')
+                                                    @elseif($order->status == 'Đang giao hàng')
                                                     <td><span class="text-warning">{{ $order->status }}</span></td>
                                                     @else
                                                     <td><span class="text-success">{{ $order->status }}</span></td>

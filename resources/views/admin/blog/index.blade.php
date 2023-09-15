@@ -51,13 +51,13 @@
                         <td>{{ $blog->title }}</td>
                         <td>{{ $blog->scontent }}</td>
                         @if($blog->published == 1)
-                        <td><i class="fas fa-eye"></i></td>
+                        <td><a href="admin/update-published-blog/{{ $blog->id }}"><i style="color: green" class="fas fa-eye"></i></a></td>
                         @else
-                        <td><i class="fas fa-eye-slash"></i></td>
+                        <td><a href="admin/update-published-blog/{{ $blog->id }}"><i style="color: red" class="fas fa-eye-slash"></i></a></td>
                         @endif
                         <td>
-                            <i class="nav-icon fas fa-pen"></i>
-                            <i class="nav-icon fas fa-trash" style="margin-left: 10px"></i>
+                            <a href="admin/edit-blog/{{ $blog->id }}"><i class="nav-icon fas fa-pen"></i></a>
+                            <a href="admin/remove-blog/{{ $blog->id }}"><i class="nav-icon fas fa-trash" style="margin-left: 10px;color: red"></i></a>
                         </td>
                     </tr>
                     @endforeach

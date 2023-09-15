@@ -25,4 +25,8 @@ class City extends Model
     public function user() {
         return $this->hasMany(User::class,'city','id');
     }
+
+    public function shipper() {
+        return $this->hasMany(Shipper::class,'city','id');
+    }
 }

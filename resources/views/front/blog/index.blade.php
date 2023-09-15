@@ -192,7 +192,7 @@
                 <div class="col-lg-4 col-md-6 col-sm-12">
                     <div class="single_blog_list">
                         <div class="blog__thumb">
-                            <a href="blog/{{ $blog->alias }}"><img src="front/blog/{{ $blog->thumb }}" alt=""></a>    
+                            <a href="blog/{{ $blog->alias }}"><img src="front/blog/{{ $blog->thumb }}" height="300px"></a>    
                         </div>
                         <div class="post__content">
                             <h3><a href="blog/{{ $blog->alias }}">{{ $blog->title }}</a></h3>

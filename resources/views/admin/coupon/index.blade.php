@@ -56,8 +56,8 @@
                         <td>{{ $coupon->type == 1 ? $coupon->value.'%' : number_format($coupon->value,0).'đ' }}</td>
                         <td>{{ 'Đơn hàng > '.number_format($coupon->total_order,0).'đ' }}</td>
                         <td>
-                            <i class="nav-icon fas fa-pen"></i>
-                            <i class="nav-icon fas fa-trash" style="margin-left: 10px"></i>
+                          <a href="admin/edit-coupon/{{ $coupon->id }}"><i class="nav-icon fas fa-pen"></i></a>
+                            <a href="admin/remove-coupon/{{ $coupon->id }}"><i class="nav-icon fas fa-trash" style="margin-left: 10px"></i></a>
                         </td>
                     </tr>
                     @endforeach

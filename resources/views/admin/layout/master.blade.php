@@ -63,7 +63,7 @@
           <img src="admin/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="admin/dashboard" class="d-block">Thắng</a>
+          <a href="admin/dashboard" class="d-block">{{ Session::get('admin_name') }}</a>
         </div>
       </div>
 
@@ -81,21 +81,21 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="admin/danh-sach-khach-hang" class="nav-link">
                 <i class="nav-icon fas fa-user"></i>
               <p>
-                Quản lý khách hàng
-                <i class="fas fa-angle-left right"></i>
+                Danh sách khách hàng
               </p>
             </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="admin/danh-sach-khach-hang" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Danh sách khách hàng</p>
-                </a>
-              </li>
-            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a href="admin/danh-sach-don-hang" class="nav-link">
+              <i class="nav-icon fas fa-box"></i>
+              <p>
+                Danh sách đơn hàng
+              </p>
+            </a>
           </li>
 
           <li class="nav-item">
@@ -114,7 +114,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../layout/collapsed-sidebar.html" class="nav-link">
+                <a href="admin/add-product" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Thêm sản phẩm</p>
                 </a>
@@ -137,7 +137,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../forms/advanced.html" class="nav-link">
+                <a href="admin/add-coupon" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Thêm coupon</p>
                 </a>
@@ -160,7 +160,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../charts/flot.html" class="nav-link">
+                <a href="admin/add-category" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Thêm danh mục</p>
                 </a>
@@ -168,30 +168,7 @@
               
             </ul>
           </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-box"></i>
-              <p>
-                Quản lý đơn hàng
-                <i class="fas fa-angle-left right"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="admin/danh-sach-don-hang" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Danh sách đơn hàng</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="../UI/icons.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Thêm đơn hàng</p>
-                </a>
-              </li>
-              
-            </ul>
-          </li>
+          
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-newspaper"></i>
@@ -208,7 +185,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../forms/advanced.html" class="nav-link">
+                <a href="admin/add-blog" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Thêm tin tức</p>
                 </a>
@@ -231,12 +208,20 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../forms/advanced.html" class="nav-link">
+                <a href="admin/add-shipper" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Thêm shipper</p>
                 </a>
               </li>
             </ul>
+          </li>
+          <li class="nav-item">
+            <a href="admin/logout" class="nav-link">
+              <i class="nav-icon fas fa-sign-out-alt"></i>
+              <p>
+                Đăng xuất
+              </p>
+            </a>
           </li>
         </ul>
       </nav>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Product;
 use App\Service\Product\ProductServiceInterface;
 use App\Service\ProductCategory\ProductCategoryServiceInterface;
 use App\Service\ProductComment\ProductCommentServiceInterface;
@@ -25,9 +26,10 @@ class ShopController extends Controller
         $this->productCategoryService = $productCategoryService;
     }
 
-    public function show($id) 
+    public function show($alias) 
     {
-        $product = $this->productService->find($id);
+        // $product = $this->productService->find($id);
+        $product = Product::where('alias',$alias)->first();
         $relatedProduct = $this->productService->getRelatedProducts($product);
         return view('front.shop.show',compact('product','relatedProduct'));
     }

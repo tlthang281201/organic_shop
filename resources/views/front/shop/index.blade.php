@@ -198,9 +198,11 @@
                                 </div>
                                 <ul class="shop_toggle">
                                     @foreach($categories as $category)
-                                    @if($category->published == 1)
-                                        <li><a href="shop/danh-muc/{{ $category->alias }}">{{ $category->name }}</a></li>
-                                    @endif
+                                        @if($category->published == 1)
+                                            @if(count($category->products)>0)
+                                            <li><a href="shop/danh-muc/{{ $category->alias }}">{{ $category->name }}</a></li>
+                                            @endif
+                                        @endif
                                     @endforeach
                                 </ul>   
                             </div>
@@ -266,14 +268,14 @@
                                                 @endif
                                                 
                                                 <div class="product_img">
-                                                    <a href="shop/san-pham/{{ $product->id }}">
-                                                        <img src="front/img/{{ $product->productImage[0]->path }}" alt="">
+                                                    <a href="shop/san-pham/{{ $product->alias }}">
+                                                        <img src="front/img/{{ $product->productImage[0]->path }}" style="height: 223px">
                                                     </a>
                                                 </div>
                                                 <div class="product__content text-center">
                                                     <div class="produc_desc_info">
                                                         <div class="product_title">
-                                                            <h4><a href="shop/san-pham/{{ $product->id }}">{{ $product->product_name }}</a></h4>
+                                                            <h4><a href="shop/san-pham/{{ $product->alias }}">{{ $product->product_name }}</a></h4>
                                                         </div>
                                                         <div class="product_price">
                                                             @if($product->discount != null)
@@ -287,7 +289,7 @@
                                                         <ul>
                                                             <li><a href="javascript:addCart({{ $product->id }},1)"><i class="ion-android-cart"></i></a></li>
                                                             {{-- <li><a class="cart-fore" href="#" data-toggle="modal" data-target="#my_modal"  title="Quick View" ><i class="ion-android-open"></i></a></li> --}}
-                                                            <li><a href="shop/san-pham/{{ $product->id }}"><i class="ion-clipboard"></i></a></li>
+                                                            <li><a href="shop/san-pham/{{ $product->alias }}"><i class="ion-clipboard"></i></a></li>
                                                         </ul>
                                                     </div>
                                                 </div>

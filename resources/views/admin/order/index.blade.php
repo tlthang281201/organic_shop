@@ -64,13 +64,17 @@
                         @elseif($order->status == 'Đã xác nhận')
                         <td class="text-success">{{$order->status }}</td>
                         @elseif($order->status == 'Đang giao hàng')
-                        <td class="text-warn">{{$order->status }}</td>
+                        <td class="text-warning">{{$order->status }}</td>
                         @else
                         <td class="text-success">{{$order->status }}</td>
                         @endif
                         <td>
-                            <i class=" fas fa-pen"></i>
-                            <i class=" fas fa-trash" style="margin-left: 10px"></i>
+                          <a href="admin/edit-order/{{ $order->id }}"><i class=" fas fa-pen"></i></a>
+                            
+                          <a href="admin/show-order/{{ $order->id }}"><i style="margin-left: 20px" class="fas fa-eye"></i></a>
+                            @if($order->status == 'Đã giao hàng')
+                            <a href="admin/remove-order/{{ $order->id }}"><i class=" fas fa-trash" style="margin-left: 20px"></i></a>
+                            @endif
                         </td>
                     </tr>
                     @endforeach

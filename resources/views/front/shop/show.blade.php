@@ -204,7 +204,7 @@
                   id="{{$index}}"
                   role="tabpanel">
                   <div class="product_tab_img">
-                    <a href="#"
+                    <a
                       ><img src="front/img/{{$image->path}}" width="458px"
                     /></a>
                   </div>
@@ -428,7 +428,7 @@
                   <span class="discount_price">Khuyến mãi</span>
                 @endif
                 <div class="product_img">
-                  <a href="shop/san-pham/{{$item->id}}">
+                  <a href="shop/san-pham/{{$item->alias}}">
                     <img src="front/img/{{$item->productImage[0]->path}}" alt="" />
                   </a>
                 </div>
@@ -436,7 +436,7 @@
                   <div class="produc_desc_info">
                     <div class="product_title">
                       <h4>
-                        <a href="shop/san-pham/{{ $item->id }}"
+                        <a href="shop/san-pham/{{ $item->alias }}"
                           >{{$item->product_name}}</a
                         >
                       </h4>
@@ -466,7 +466,7 @@
                         ></a>
                       </li> --}}
                       <li>
-                        <a href="shop/san-pham/{{$item->id}}"
+                        <a href="shop/san-pham/{{$item->alias}}"
                           ><i class="ion-clipboard"></i
                         ></a>
                       </li>

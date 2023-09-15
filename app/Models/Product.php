@@ -13,6 +13,19 @@ class Product extends Model
     protected $primaryKey = 'id';
     protected $guarded = []; 
 
+    protected $fillable = [
+        'product_name',
+        'sdescription',
+        'cate_id',
+        'description',
+        'price',
+        'discount',
+        'stocks',
+        'alias',
+        'featured',
+        'published',
+    ];
+
     public function productCategory() {
         return $this->belongsTo(Category::class,'cate_id','id');
     }

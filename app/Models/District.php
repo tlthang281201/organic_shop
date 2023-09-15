@@ -29,4 +29,8 @@ class District extends Model
     public function user() {
         return $this->hasMany(User::class,'district','id');
     }
+
+    public function shipper() {
+        return $this->hasMany(Shipper::class,'city','id');
+    }
 }
