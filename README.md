@@ -20,5 +20,34 @@ Thanh toán đơn hàng
 
 ![image](https://github.com/tlthang281201/organic_shop/assets/142721732/670187de-9c1e-48df-a7db-45d3ba25cbf0)
 
+Thanh toán online
+
+![image](https://github.com/tlthang281201/organic_shop/assets/142721732/88125ac7-59f7-479f-a0e9-5def9f910c92)
+
+Xem lịch sử đơn hàng
+
+![image](https://github.com/tlthang281201/organic_shop/assets/142721732/0d369507-7412-4fd1-a8b5-4be4605b4dd6)
+
+# Quản trị viên
+
+Quản lý đơn hàng
+
+![image](https://github.com/tlthang281201/organic_shop/assets/142721732/bfe3b21d-e2d8-49ab-9c5b-1fa918eef78e)
+
+Xem chi tiết đơn hàng 
+
+![image](https://github.com/tlthang281201/organic_shop/assets/142721732/7adfab8c-bec5-41c3-8f91-e4787106606b)
+
+
+Quản lý sản phẩm
+
+![image](https://github.com/tlthang281201/organic_shop/assets/142721732/5fe0c7d8-314a-4196-a8b2-b8ece5134b45)
+
+Quản lý tin tức
+
+![image](https://github.com/tlthang281201/organic_shop/assets/142721732/96af1028-ba60-40d4-bb93-d97b09b234fa)
+
+
+
 
 
